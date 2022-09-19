@@ -1,4 +1,7 @@
-﻿  Source.cpp
-  Window.cpp
-  Generating Code...
+﻿  Logger.cpp
+C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Code\Logger.cpp(44,22): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
   Grass Rendering.vcxproj -> C:\Users\joe\Desktop\Works\Grass Rendering\x64\Debug\Grass Rendering.exe

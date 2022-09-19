@@ -17,4 +17,6 @@ int main()
 	}
 
 	logMessage("Grass Rendering Program closing.");
+
+	logger.saveToFile("Logs/");
 }
