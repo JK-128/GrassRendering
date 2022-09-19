@@ -1,4 +1,6 @@
 #pragma once
+#define _CRTDBG_MAP_ALLOC
+
 #include <GLFW/glfw3.h>
 #include "Logger.h"
 

@@ -31,8 +31,8 @@ void Logger::saveToFile(std::string filePath)
 	std::fstream file;
 	file.open(filePath, std::ios::app);
 
-	for (std::string s : m_messages)
-		file << s << "\n";
+	for (std::string message : m_messages)
+		file << message << "\n";
 
 	file.close();
 }
