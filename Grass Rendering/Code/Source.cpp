@@ -1,8 +1,17 @@
 #include <iostream>
+#include <GLFW/glfw3.h>
 
 int main()
 {
-	std::cout << "This is a brand new program!" << std::endl;
+	glfwInit();
+	GLFWwindow* window = glfwCreateWindow(800, 800, "Title", 0, 0);
+	glfwMakeContextCurrent(window);
 
-	return 0;
+	while (!glfwWindowShouldClose(window))
+	{
+		glfwPollEvents();
+		glfwSwapBuffers(window);
+	}
+
+	glfwDestroyWindow(window);
 }
