@@ -3,7 +3,11 @@
 Window::Window(int width, int height, const char* title, bool createNow, bool initGlfw)
 {
 	if (initGlfw)
+	{
 		glfwInit();
+
+		logMessage("GLFW initialised.");
+	}
 
 	m_width = width;
 	m_height = height;
@@ -20,6 +24,8 @@ bool Window::isClosing()
 
 void Window::create()
 {
+	logMessage("Window created.");
+
 	mp_window = glfwCreateWindow(m_width, m_height, m_title, 0, 0);
 
 	glfwMakeContextCurrent(mp_window);
@@ -30,7 +36,7 @@ void Window::poll()
 	glfwPollEvents();
 
 	if (glfwWindowShouldClose(mp_window))
-		m_closing = true;
+		close();
 }
 
 void Window::swap()
@@ -40,5 +46,7 @@ void Window::swap()
 
 void Window::close()
 {
+	logMessage("Window closing.");
+
 	m_closing = true;
 }

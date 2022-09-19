@@ -132,9 +132,11 @@
   <ItemGroup>
     <ClCompile Include="Code\Source.cpp" />
     <ClCompile Include="Code\Window.cpp" />
+    <ClCompile Include="Code\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Window.h" />
+    <ClInclude Include="Code\Logger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
