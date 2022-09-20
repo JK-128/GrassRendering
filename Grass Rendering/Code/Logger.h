@@ -24,4 +24,4 @@ extern Logger logger;
 
 std::string getCurrentTimeString();
 
-void logMessage(std::string message);
+void logMessage(std::string message, std::string author = "NULL", int level = 0);

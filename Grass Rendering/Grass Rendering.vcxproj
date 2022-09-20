@@ -133,6 +133,7 @@
     <ClCompile Include="Code\Source.cpp" />
     <ClCompile Include="Code\Window.cpp" />
     <ClCompile Include="Code\Logger.cpp" />
+    <ClCompile Include="Code\Console.cpp" />
     <ClCompile Include="Dependencies\glad.c" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui.cpp" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_draw.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Code\Window.h" />
     <ClInclude Include="Code\Logger.h" />
     <ClInclude Include="Code\ImGuiWrapper.h" />
+    <ClInclude Include="Code\Console.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

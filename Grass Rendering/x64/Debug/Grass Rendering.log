@@ -1,5 +1,5 @@
-﻿  Source.cpp
-  ImGuiWrapper.cpp
-  Generating Code...
+﻿  Console.cpp
+C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Code\Console.cpp(7,34): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Code\Console.cpp(69,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Grass Rendering.vcxproj -> C:\Users\joe\Desktop\Works\Grass Rendering\x64\Debug\Grass Rendering.exe

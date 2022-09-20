@@ -5,16 +5,22 @@
 #include <iostream>
 #include "Window.h"
 #include "ImGuiWrapper.h"
+#include "Console.h"
 
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	logMessage("Grass Renderer Program Started.");
+	logMessage("Grass Renderer Program Started.", "MAIN");
 
 	Window window(800, 800, "Test Window", true, true);
 
-	ImGuiWrapper imgui(window.getGlfwWindow());
+	imgui = new ImGuiWrapper(window.getGlfwWindow());
+
+	Console console;
+
+	for(int i = 0; i < 30; i++)
+		logMessage("test");
 
 	while (!window.isClosing())
 	{
@@ -22,22 +28,20 @@ int main()
 
 		logger.printNewMessages();
 
-		imgui.newFrame();
+		imgui->newFrame();
 
-		ImGui::Begin("Test");
-		ImGui::Text("This is a test of IMGUI.");
-		ImGui::End();
+		console.draw();
 
-		imgui.render();
+		imgui->render();
 		
 		window.swap();
 		window.poll();
 	}
-	imgui.destroy();
+	imgui->destroy();
 	glfwTerminate();
 
 
-	logMessage("Grass Rendering Program closing.");
+	logMessage("Grass Rendering Program closing.", "MAIN");
 	logger.saveToFile("Logs/");
 }
 
@@ -45,9 +49,8 @@ int main()
 /*
 TO DO:
 ------
-+ Include IMGUI to the project.
-	+ Research the correct way to do this.
-+ Add GLAD and GLM to the project.
++ Create a console to output the logger messages.
++ Add GLM to the project.
 + Get a plane loaded in.
 + Create some kind of simple camera that allows for WASD movement.
 + Add mouse functionality to this.

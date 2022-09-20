@@ -64,11 +64,12 @@ std::string getCurrentTimeString()
 	return timeString;
 }
 
-void logMessage(std::string message)
+void logMessage(std::string message, std::string author, int level)
 {
-	std::string timeString = getCurrentTimeString();
-	
-	std::string updatedMessage = "[" + timeString + "] " + message;
+	std::string timeString   = "[" + getCurrentTimeString() + "]";
+	std::string authorString = "[" + author + "] ";
+
+	std::string updatedMessage = std::to_string(level) + timeString + authorString + message;
 
 	logger.addMessage(updatedMessage);
 }

@@ -11,11 +11,16 @@
 
 class ImGuiWrapper
 {
+private:
+	bool m_hovered = false;
+
 public:
 	ImGuiWrapper(GLFWwindow* window);
 
 	void newFrame();
 	void render();
 	void destroy();
+	void setHovered(bool status);
 };
 
+extern ImGuiWrapper* imgui;

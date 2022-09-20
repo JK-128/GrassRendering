@@ -1,5 +1,7 @@
 #include "ImGuiWrapper.h"
 
+ImGuiWrapper* imgui;
+
 ImGuiWrapper::ImGuiWrapper(GLFWwindow* window)
 {
 	IMGUI_CHECKVERSION();
@@ -8,7 +10,7 @@ ImGuiWrapper::ImGuiWrapper(GLFWwindow* window)
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 460");
 
-	logMessage("IMGUI initialised.");
+	logMessage("IMGUI initialised.", "IMGUI");
 }
 
 void ImGuiWrapper::newFrame()
@@ -29,4 +31,11 @@ void ImGuiWrapper::destroy()
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
+
+	delete this;
+}
+
+void ImGuiWrapper::setHovered(bool status)
+{
+	m_hovered = status;
 }
