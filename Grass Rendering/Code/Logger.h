@@ -1,6 +1,4 @@
 #pragma once
-#define _CRTDBG_MAP_ALLOC
-
 #include <iostream>
 #include <vector>
 #include <chrono>

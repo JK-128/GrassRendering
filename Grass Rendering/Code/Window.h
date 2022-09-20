@@ -1,7 +1,7 @@
 #pragma once
-#define _CRTDBG_MAP_ALLOC
-
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
 #include "Logger.h"
 
 class Window
@@ -19,11 +19,14 @@ private:
 public:
 	Window(int width, int height, const char* title, bool createNow = true, bool initGlfw = false);
 
+	GLFWwindow* getGlfwWindow();
+
 	bool isClosing();
 
-	void create();
+	void create(bool initGlad = false);
 	void poll();
 	void swap();
 	void close();
+	void clear();
 };
 

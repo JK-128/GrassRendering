@@ -4,9 +4,10 @@ Window::Window(int width, int height, const char* title, bool createNow, bool in
 {
 	if (initGlfw)
 	{
-		glfwInit();
-
-		logMessage("GLFW initialised.");
+		if (!glfwInit())
+			logMessage("Failed to initialise GLFW.");
+		else
+			logMessage("GLFW initialised.");
 	}
 
 	m_width = width;
@@ -14,7 +15,12 @@ Window::Window(int width, int height, const char* title, bool createNow, bool in
 	m_title = title;
 
 	if (createNow)
-		create();
+		create(initGlfw);
+}
+
+GLFWwindow* Window::getGlfwWindow()
+{
+	return mp_window;
 }
 
 bool Window::isClosing()
@@ -22,13 +28,24 @@ bool Window::isClosing()
 	return m_closing;
 }
 
-void Window::create()
+void Window::create(bool initGlad)
 {
 	logMessage("Window created.");
 
 	mp_window = glfwCreateWindow(m_width, m_height, m_title, 0, 0);
 
 	glfwMakeContextCurrent(mp_window);
+
+	if (initGlad)
+	{
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+			logMessage("Failed to initialise GLAD.");
+		else
+			logMessage("GLAD initialised.");
+
+		glEnable(GL_DEPTH_TEST);
+		glDepthFunc(GL_LESS);
+	}
 }
 
 void Window::poll()
@@ -49,4 +66,9 @@ void Window::close()
 	logMessage("Window closing.");
 
 	m_closing = true;
+}
+
+void Window::clear()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
