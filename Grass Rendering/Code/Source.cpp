@@ -4,13 +4,7 @@
 
 #include <iostream>
 #include "Window.h"
-
-//Testing the include methods for IMGUI:
-#include "../Dependencies/imgui-master/imgui-master/imgui.h"
-#include "../Dependencies/imgui-master/imgui-master/imgui_impl_opengl3.h"
-#include "../Dependencies/imgui-master/imgui-master/imgui_impl_glfw.h"
-#include "../Dependencies/imgui-master/imgui-master/imgui_internal.h"
-
+#include "ImGuiWrapper.h"
 
 int main()
 {
@@ -20,12 +14,7 @@ int main()
 
 	Window window(800, 800, "Test Window", true, true);
 
-	//Setting up imgui
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-
-	ImGui_ImplGlfw_InitForOpenGL(window.getGlfwWindow(), true);
-	ImGui_ImplOpenGL3_Init("#version 460");
+	ImGuiWrapper imgui(window.getGlfwWindow());
 
 	while (!window.isClosing())
 	{
@@ -33,25 +22,18 @@ int main()
 
 		logger.printNewMessages();
 
-		
-		//Testing IMGUI functionality
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+		imgui.newFrame();
 
 		ImGui::Begin("Test");
 		ImGui::Text("This is a test of IMGUI.");
 		ImGui::End();
 
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		imgui.render();
 		
 		window.swap();
 		window.poll();
 	}
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
+	imgui.destroy();
 	glfwTerminate();
 
 

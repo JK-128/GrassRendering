@@ -45,12 +45,18 @@
     <ClCompile Include="Dependencies\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\ImGuiWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ImGuiWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

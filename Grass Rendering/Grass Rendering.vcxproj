@@ -140,10 +140,12 @@
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_tables.cpp" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_widgets.cpp" />
+    <ClCompile Include="Code\ImGuiWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Window.h" />
     <ClInclude Include="Code\Logger.h" />
+    <ClInclude Include="Code\ImGuiWrapper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
