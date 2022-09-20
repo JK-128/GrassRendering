@@ -2,9 +2,9 @@
 
 void Console::draw()
 {
-	std::vector<std::string> messages = logger.getMessages();
+	std::vector<std::string> messageList = logger.getMessages();
 
-	m_messageCount = messages.size();
+	m_messageCount = messageList.size();
 	m_errorCount   = 0;
 	m_warningCount = 0;
 
@@ -24,24 +24,50 @@ void Console::draw()
 		imgui->setHovered(true);
 
 	for (int i = 0; i < m_messageCount; i++)
-	{
-		printMessage(messages[i]);
-	}
+		printMessage(messageList[i]);
 
 	//ImGui::SetScrollHereY(1.0f);
 	ImGui::EndChild();
+
+	std::string errors   = "[Errors: "   + std::to_string(m_errorCount)   + "]";
+	std::string warnings = "[Warnings: " + std::to_string(m_warningCount) + "]";
+	std::string messages = "[Messages: " + std::to_string(m_messageCount) + "]";
+	
+	ImGui::Separator();
+	if (ImGui::Button(messages.c_str()))
+		m_showMessages = !m_showMessages;
+
+	ImGui::SameLine();
+	if (ImGui::Button(warnings.c_str())) 
+		m_showWarnings = !m_showWarnings;
+
+	ImGui::SameLine();
+	if (ImGui::Button(errors.c_str()))
+		m_showErrors = !m_showErrors;
 
 	ImGui::End();
 }
 
 void Console::printMessage(std::string message)
 {
+
 	int level = (int)message[0] - 48;
 
 	if (level == 0 && !m_showMessages) return;
-	if (level == 1 && !m_showWarnings) return;
-	if (level == 2 && !m_showErrors)   return;
 
+	if (level == 1)
+	{
+		m_warningCount++;
+		if(!m_showWarnings) 
+			return;
+	}
+	if (level == 2)
+	{
+		m_errorCount++;
+		if(!m_showErrors)   
+			return;
+	}
+	
 	color mColor = MessageColors[level];
 
 	std::string cleanMessage = message.substr(1, message.size() - 1);

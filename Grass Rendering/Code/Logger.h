@@ -16,7 +16,6 @@ public:
 	std::vector<std::string> getMessages();
 
 	void addMessage(std::string message);
-	void printNewMessages();
 	void saveToFile(std::string path);
 };
 

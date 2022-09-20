@@ -19,14 +19,9 @@ int main()
 
 	Console console;
 
-	for(int i = 0; i < 30; i++)
-		logMessage("test");
-
 	while (!window.isClosing())
 	{
 		window.clear();
-
-		logger.printNewMessages();
 
 		imgui->newFrame();
 
@@ -49,7 +44,6 @@ int main()
 /*
 TO DO:
 ------
-+ Create a console to output the logger messages.
 + Add GLM to the project.
 + Get a plane loaded in.
 + Create some kind of simple camera that allows for WASD movement.
