@@ -10,9 +10,9 @@ Window::Window(int width, int height, const char* title, bool createNow, bool in
 			logMessage("GLFW initialised.", "WINDOW");
 	}
 
-	m_width = width;
+	m_width  = width;
 	m_height = height;
-	m_title = title;
+	m_title  = title;
 
 	if (createNow)
 		create(initGlfw);

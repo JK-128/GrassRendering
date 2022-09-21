@@ -2,18 +2,19 @@
 
 void Console::draw()
 {
-	std::vector<std::string> messageList = logger.getMessages();
+	std::vector<std::string>* messageList = logger.getMessages();
 
-	m_messageCount = messageList.size();
+	m_messageCount = (*messageList).size();
 	m_errorCount   = 0;
 	m_warningCount = 0;
 
-	ImGui::SetNextWindowSize(ImVec2(500, 200));
+	ImGui::SetNextWindowSize(ImVec2(m_height, m_width));
 	ImGui::Begin("Console");
 
 	if (ImGui::IsWindowHovered())
 		imgui->setHovered(true);
 
+	//Footer height used to place buttons properly below text.
 	float ySpacing     = ImGui::GetStyle().ItemSpacing.y;
 	float frameHeight  = ImGui::GetFrameHeightWithSpacing();
 	float footerHeight = ySpacing + frameHeight;
@@ -24,9 +25,9 @@ void Console::draw()
 		imgui->setHovered(true);
 
 	for (int i = 0; i < m_messageCount; i++)
-		printMessage(messageList[i]);
+		printMessage(messageList->at(i));
 
-	//ImGui::SetScrollHereY(1.0f);
+	//ImGui::SetScrollHereY(1.0f); (Used to keep the scroll bar at the bottom)
 	ImGui::EndChild();
 
 	std::string errors   = "[Errors: "   + std::to_string(m_errorCount)   + "]";
@@ -70,7 +71,7 @@ void Console::printMessage(std::string message)
 	
 	color mColor = MessageColors[level];
 
-	std::string cleanMessage = message.substr(1, message.size() - 1);
+	std::string cleanMessage = message.substr(1, message.size() - 1); //Removes the preceeding error value.
 	std::string author       = getAuthor(cleanMessage);
 
 	if (author != m_previousAuthor)

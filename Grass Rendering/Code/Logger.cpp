@@ -2,9 +2,9 @@
 
 Logger logger;
 
-std::vector<std::string> Logger::getMessages()
+std::vector<std::string>* Logger::getMessages()
 {
-	return m_messages;
+	return &m_messages;
 }
 
 void Logger::addMessage(std::string message)
@@ -16,6 +16,7 @@ void Logger::saveToFile(std::string filePath)
 {
 	std::string timeString = getCurrentTimeString();
 
+	//Replacing 'time unit separators' so can be used in file name.
 	for (int i = 0; i < timeString.length(); i++)
 		if (timeString[i] == ':' || timeString[i] == '.')
 			timeString[i] = '-';

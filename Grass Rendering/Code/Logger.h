@@ -13,7 +13,7 @@ private:
 	int m_position = 0;
 
 public:
-	std::vector<std::string> getMessages();
+	std::vector<std::string>* getMessages();
 
 	void addMessage(std::string message);
 	void saveToFile(std::string path);

@@ -44,6 +44,7 @@ int main()
 /*
 TO DO:
 ------
++ See what can be cleaned up so far.
 + Add GLM to the project.
 + Get a plane loaded in.
 + Create some kind of simple camera that allows for WASD movement.

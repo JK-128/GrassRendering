@@ -9,6 +9,9 @@ private:
 	int m_errorCount   = 0;
 	int m_warningCount = 0;
 
+	int m_height = 500;
+	int m_width  = 200;
+
 	bool m_showErrors   = true;
 	bool m_showWarnings = true;
 	bool m_showMessages = true;
