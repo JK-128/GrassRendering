@@ -13,46 +13,26 @@ int WinMain()
 
 	logMessage("Grass Renderer Program Started.", "MAIN");
 
-	Window* window = new Window;
+	Window window(800, 800, "Test Window", true, true);
 
-	bool windowCreated = false;
-	try
+	if (window.isCreated())
 	{
-		delete window;
-		window = new Window(800, 800, "Test Window", true, true);
-		
-		windowCreated = window->isCreated();
-		if (!windowCreated)
-			throw 1;
-	}
-	catch (int e)
-	{
-		logMessage("Unable to create GLFW window.", "MAIN", 2);
-	}
-
-	if (windowCreated)
-	{
-		imgui = new ImGuiWrapper(window->getGlfwWindow());
+		imgui = new ImGuiWrapper(window.getGlfwWindow());
 
 		Console console;
-
-		while (!window->isClosing())
+	
+		while (!window.isClosing())
 		{
-			window->clear();
+			window.clear();
 
-			imgui->newFrame();
+			imgui->drawObjects();
 
-			console.draw();
-
-			imgui->render();
-
-			window->swap();
-			window->poll();
+			window.swap();
+			window.poll();
 		}
 		imgui->destroy();
 	}
 	glfwTerminate();
-	delete window;
 
 	logMessage("Grass Rendering Program closing.", "MAIN");
 	logger.saveToFile("Logs/");
@@ -64,7 +44,8 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Look into exceptions/handling and make it so no possible problem will cause a fatal crash.
++ clean up main function/source file.
++ Create a hierarchy for IMGUI/UI objects.
 + Add GLM to the project.
 + Get a plane loaded in.
 + Create some kind of simple camera that allows for WASD movement.

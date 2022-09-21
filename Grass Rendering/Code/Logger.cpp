@@ -61,7 +61,7 @@ std::string getCurrentTimeString()
 {
 	auto timeSinceEpoch = std::chrono::system_clock::now().time_since_epoch();
 	auto timeMS         = std::chrono::duration_cast<std::chrono::milliseconds>(timeSinceEpoch);
-	int  msCount        = timeMS.count();
+	int  msCount        = (int)timeMS.count();
 
 	std::string time = std::to_string(msCount);
 	std::string ms   = time.substr(time.size() - 3, 3);

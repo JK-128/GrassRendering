@@ -2,7 +2,7 @@
 #include "Logger.h"
 #include "ImGuiWrapper.h"
 
-class Console
+class Console : public ImGuiBase
 {
 private:
 	int m_messageCount = 0;

@@ -4,13 +4,21 @@ ImGuiWrapper* imgui;
 
 ImGuiWrapper::ImGuiWrapper(GLFWwindow* window)
 {
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
+	try
+	{
+		IMGUI_CHECKVERSION();
+		ImGui::CreateContext();
 
-	ImGui_ImplGlfw_InitForOpenGL(window, true);
-	ImGui_ImplOpenGL3_Init("#version 460");
+		ImGui_ImplGlfw_InitForOpenGL(window, true);
+		ImGui_ImplOpenGL3_Init("#version 460");
 
-	logMessage("IMGUI initialised.", "IMGUI");
+		logMessage("IMGUI initialised.", "IGUI");
+		m_created = true;
+	}
+	catch (...)
+	{
+		logMessage("Could not initialise IMGUI.", "IGUI", 2);
+	}
 }
 
 void ImGuiWrapper::newFrame()
@@ -39,4 +47,26 @@ void ImGuiWrapper::destroy()
 void ImGuiWrapper::setHovered(bool status)
 {
 	m_hovered = status;
+}
+
+void ImGuiWrapper::addObject(ImGuiBase* object)
+{
+	m_objects.push_back(object);
+}
+
+void ImGuiWrapper::drawObjects() 
+{
+	if (m_created)
+	{
+		imgui->setHovered(false);
+
+		newFrame();
+
+		for (int i = 0; i < m_objects.size(); i++)
+			m_objects[i]->draw();
+
+		render();
+	}
+	else
+		logMessage("Attempting to use IMGUI before creation.", "IGUI", 1);
 }

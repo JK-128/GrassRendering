@@ -142,12 +142,14 @@
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_tables.cpp" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_widgets.cpp" />
     <ClCompile Include="Code\ImGuiWrapper.cpp" />
+    <ClCompile Include="Code\ImGuiBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Window.h" />
     <ClInclude Include="Code\Logger.h" />
     <ClInclude Include="Code\ImGuiWrapper.h" />
     <ClInclude Include="Code\Console.h" />
+    <ClInclude Include="Code\ImGuiBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

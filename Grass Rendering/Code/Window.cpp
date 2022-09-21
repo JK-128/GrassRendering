@@ -7,9 +7,9 @@ Window::Window(int width, int height, const char* title, bool createNow, bool in
 	if (initGlfw)
 	{
 		if (!glfwInit())
-			logMessage("Failed to initialise GLFW.", "WINDOW", 2);
+			logMessage("Failed to initialise GLFW.", "WNDW", 2);
 		else
-			logMessage("GLFW initialised.", "WINDOW");
+			logMessage("GLFW initialised.", "WNDW");
 	}
 
 	m_width  = width;
@@ -17,7 +17,12 @@ Window::Window(int width, int height, const char* title, bool createNow, bool in
 	m_title  = title;
 
 	if (createNow)
+	{
 		create(initGlfw);
+
+		if (!m_created)
+			logMessage("Unable to create GLFW window.", "WNDW", 2);
+	}
 }
 
 GLFWwindow* Window::getGlfwWindow()
@@ -32,12 +37,21 @@ bool Window::isClosing()
 
 bool Window::isCreated()
 {
+	if (!m_created)
+		logMessage("Trying to use a window that has not been created.", "WNDW", 1);
+
 	return m_created;
 }
 
 void Window::create(bool initGlad)
 {
-	logMessage("Window created.", "WINDOW");
+	if (m_created)
+	{
+		logMessage("Window already created.", "WNDW", 1);
+		return;
+	}
+
+	logMessage("Window created.", "WNDW");
 
 	mp_window = glfwCreateWindow(m_width, m_height, m_title, 0, 0);
 
@@ -46,11 +60,11 @@ void Window::create(bool initGlad)
 	if (initGlad)
 	{
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-			logMessage("Failed to initialise GLAD.", "WINDOW", 2);
+			logMessage("Failed to initialise GLAD.", "WNDW", 2);
 		else
 		{
 			m_created = true;
-			logMessage("GLAD initialised.", "WINDOW");
+			logMessage("GLAD initialised.", "WNDW");
 
 			glEnable(GL_DEPTH_TEST);
 			glDepthFunc(GL_LESS);
@@ -73,7 +87,7 @@ void Window::swap()
 
 void Window::close()
 {
-	logMessage("Window closing.", "WINDOW");
+	logMessage("Window closing.", "WNDW");
 
 	m_closing = true;
 }

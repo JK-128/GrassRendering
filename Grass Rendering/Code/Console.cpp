@@ -4,11 +4,11 @@ void Console::draw()
 {
 	std::vector<std::string>* messageList = logger.getMessages();
 
-	m_messageCount = (*messageList).size();
+	m_messageCount = (int)(*messageList).size();
 	m_errorCount   = 0;
 	m_warningCount = 0;
 
-	ImGui::SetNextWindowSize(ImVec2(m_height, m_width));
+	ImGui::SetNextWindowSize(ImVec2((float)m_height, (float)m_width));
 	ImGui::Begin("Console");
 
 	if (ImGui::IsWindowHovered())
@@ -93,7 +93,7 @@ std::string Console::getAuthor(std::string message)
 {
 	std::string noTime = message.substr(15, message.size() - 14);
 
-	int index = noTime.find(']');
+	int index = (int)noTime.find(']');
 
 	std::string author = noTime.substr(0, index);
 
