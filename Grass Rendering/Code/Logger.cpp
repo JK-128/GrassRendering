@@ -25,11 +25,11 @@ void Logger::saveToFile(std::string filePath)
 			timeString[i] = '-';
 
 	if (m_containsErrors)
-		timeString = "[ERR] " + timeString;
+		timeString += " [ERR]";
 	else if (m_containsWarnings)
-		timeString = "[WAR] " + timeString;
+		timeString += " [WAR]";
 	else
-		timeString = "[CLR] " + timeString;
+		timeString += " [CLR]";
 
 	filePath += timeString + ".log";
 
@@ -37,7 +37,22 @@ void Logger::saveToFile(std::string filePath)
 	file.open(filePath, std::ios::app);
 
 	for (std::string message : m_messages)
+	{
+		int level = std::stoi(message.substr(0, 1));
+
+		message = message.substr(1, message.size() - 1);
+		
+		if ((m_previousLevel != level) && (m_previousLevel != -1))
+			file << "\n";
+
+		if (level == 0) message = "[CLR]" + message;
+		if (level == 1) message = "[WAR]" + message;
+		if (level == 2) message = "[ERR]" + message;
+
 		file << message << "\n";
+		
+		m_previousLevel = level;
+	}
 
 	file.close();
 }

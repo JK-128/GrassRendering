@@ -1,5 +1,7 @@
 #include "Window.h"
 
+Window::Window() {}
+
 Window::Window(int width, int height, const char* title, bool createNow, bool initGlfw)
 {
 	if (initGlfw)
@@ -28,6 +30,11 @@ bool Window::isClosing()
 	return m_closing;
 }
 
+bool Window::isCreated()
+{
+	return m_created;
+}
+
 void Window::create(bool initGlad)
 {
 	logMessage("Window created.", "WINDOW");
@@ -41,10 +48,13 @@ void Window::create(bool initGlad)
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 			logMessage("Failed to initialise GLAD.", "WINDOW", 2);
 		else
+		{
+			m_created = true;
 			logMessage("GLAD initialised.", "WINDOW");
 
-		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LESS);
+			glEnable(GL_DEPTH_TEST);
+			glDepthFunc(GL_LESS);
+		}
 	}
 }
 

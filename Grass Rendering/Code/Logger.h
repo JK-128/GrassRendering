@@ -10,7 +10,8 @@ class Logger
 private:
 	std::vector<std::string> m_messages;
 
-	int m_position = 0;
+	int m_position      =  0;
+	int m_previousLevel = -1;
 
 	bool m_containsErrors   = false;
 	bool m_containsWarnings = false;

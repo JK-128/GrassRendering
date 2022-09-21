@@ -7,37 +7,57 @@
 #include "ImGuiWrapper.h"
 #include "Console.h"
 
-int main()
+int WinMain()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
 	logMessage("Grass Renderer Program Started.", "MAIN");
 
-	Window window(800, 800, "Test Window", true, true);
+	Window* window = new Window;
 
-	imgui = new ImGuiWrapper(window.getGlfwWindow());
-
-	Console console;
-
-	while (!window.isClosing())
+	bool windowCreated = false;
+	try
 	{
-		window.clear();
-
-		imgui->newFrame();
-
-		console.draw();
-
-		imgui->render();
+		delete window;
+		window = new Window(800, 800, "Test Window", true, true);
 		
-		window.swap();
-		window.poll();
+		windowCreated = window->isCreated();
+		if (!windowCreated)
+			throw 1;
 	}
-	imgui->destroy();
-	glfwTerminate();
+	catch (int e)
+	{
+		logMessage("Unable to create GLFW window.", "MAIN", 2);
+	}
 
+	if (windowCreated)
+	{
+		imgui = new ImGuiWrapper(window->getGlfwWindow());
+
+		Console console;
+
+		while (!window->isClosing())
+		{
+			window->clear();
+
+			imgui->newFrame();
+
+			console.draw();
+
+			imgui->render();
+
+			window->swap();
+			window->poll();
+		}
+		imgui->destroy();
+	}
+	glfwTerminate();
+	delete window;
 
 	logMessage("Grass Rendering Program closing.", "MAIN");
 	logger.saveToFile("Logs/");
+
+	return 0;
 }
 
 
