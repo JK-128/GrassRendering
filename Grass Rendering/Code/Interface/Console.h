@@ -1,5 +1,5 @@
 #pragma once
-#include "Logger.h"
+#include "../Utility/Logger.h"
 #include "ImGuiWrapper.h"
 
 class Console : public ImGuiBase

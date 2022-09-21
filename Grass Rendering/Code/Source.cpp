@@ -3,13 +3,8 @@
 #include <crtdbg.h>
 
 #include <iostream>
-#include "Window.h"
-#include "ImGuiWrapper.h"
-#include "Console.h"
-
-//GLM include test
-#include "../Dependencies/glm/glm/glm.hpp"
-#include "../Dependencies/glm/glm/matrix.hpp"
+#include "Graphics/Window.h"
+#include "Interface/Console.h"
 
 int WinMain()
 {
@@ -18,12 +13,6 @@ int WinMain()
 	logMessage("Grass Renderer Program Started.", "MAIN");
 
 	Window window(800, 800, "Test Window", true, true);
-
-	glm::vec3 one   = glm::vec3(1, 1, 1);
-	glm::vec3 two   = glm::vec3(2, 2, 2);
-	glm::vec3 three = one * two;
-
-	logMessage("GLM test: " + std::to_string(three.x), "MAIN");
 
 	if (window.isCreated())
 	{
@@ -54,7 +43,8 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Add GLM to the project.
++ Reorganise the file structure of the project to be cleaner.
++ Set up a shader class.
 + Get a plane loaded in.
 + Create some kind of simple camera that allows for WASD movement.
 + Add mouse functionality to this.
