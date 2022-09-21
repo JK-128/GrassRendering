@@ -6,6 +6,8 @@
 #include "Graphics/Window.h"
 #include "Interface/Console.h"
 
+#include "Graphics/Shader.h"
+
 int WinMain()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -13,6 +15,8 @@ int WinMain()
 	logMessage("Grass Renderer Program Started.", "MAIN");
 
 	Window window(800, 800, "Test Window", true, true);
+
+	Shader shader("Content/Shaders/vert.glsl", "Content/Shaders/frag.glsl");
 
 	if (window.isCreated())
 	{
@@ -43,8 +47,7 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Reorganise the file structure of the project to be cleaner.
-+ Set up a shader class.
++ convert paths to local rather than absolute.
 + Get a plane loaded in.
 + Create some kind of simple camera that allows for WASD movement.
 + Add mouse functionality to this.

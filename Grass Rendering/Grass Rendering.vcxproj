@@ -131,9 +131,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Code\Source.cpp" />
-    <ClCompile Include="Code\Window.cpp" />
-    <ClCompile Include="Code\Logger.cpp" />
-    <ClCompile Include="Code\Console.cpp" />
+    <ClCompile Include="Code\Graphics\Window.cpp" />
+    <ClCompile Include="Code\Utility\Logger.cpp" />
+    <ClCompile Include="Code\Interface\Console.cpp" />
     <ClCompile Include="Dependencies\glad.c" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui.cpp" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_draw.cpp" />
@@ -141,15 +141,17 @@
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_tables.cpp" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_widgets.cpp" />
-    <ClCompile Include="Code\ImGuiWrapper.cpp" />
-    <ClCompile Include="Code\ImGuiBase.cpp" />
+    <ClCompile Include="Code\Interface\ImGuiWrapper.cpp" />
+    <ClCompile Include="Code\Interface\ImGuiBase.cpp" />
+    <ClCompile Include="Code\Graphics\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Code\Window.h" />
-    <ClInclude Include="Code\Logger.h" />
-    <ClInclude Include="Code\ImGuiWrapper.h" />
-    <ClInclude Include="Code\Console.h" />
-    <ClInclude Include="Code\ImGuiBase.h" />
+    <ClInclude Include="Code\Graphics\Window.h" />
+    <ClInclude Include="Code\Utility\Logger.h" />
+    <ClInclude Include="Code\Interface\ImGuiWrapper.h" />
+    <ClInclude Include="Code\Interface\Console.h" />
+    <ClInclude Include="Code\Interface\ImGuiBase.h" />
+    <ClInclude Include="Code\Graphics\Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

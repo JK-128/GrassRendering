@@ -18,10 +18,10 @@
     <ClCompile Include="Code\Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Window.cpp">
+    <ClCompile Include="Code\Graphics\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Logger.cpp">
+    <ClCompile Include="Code\Utility\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui.cpp">
@@ -45,30 +45,36 @@
     <ClCompile Include="Dependencies\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\ImGuiWrapper.cpp">
+    <ClCompile Include="Code\Interface\ImGuiWrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Console.cpp">
+    <ClCompile Include="Code\Interface\Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\ImGuiBase.cpp">
+    <ClCompile Include="Code\Interface\ImGuiBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Graphics\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Code\Window.h">
+    <ClInclude Include="Code\Graphics\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Logger.h">
+    <ClInclude Include="Code\Utility\Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\ImGuiWrapper.h">
+    <ClInclude Include="Code\Interface\ImGuiWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Console.h">
+    <ClInclude Include="Code\Interface\Console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\ImGuiBase.h">
+    <ClInclude Include="Code\Interface\ImGuiBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Graphics\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
