@@ -12,10 +12,13 @@ private:
 
 	int m_position = 0;
 
+	bool m_containsErrors   = false;
+	bool m_containsWarnings = false;
+
 public:
 	std::vector<std::string>* getMessages();
 
-	void addMessage(std::string message);
+	void addMessage(std::string message, int level = 0);
 	void saveToFile(std::string path);
 };
 

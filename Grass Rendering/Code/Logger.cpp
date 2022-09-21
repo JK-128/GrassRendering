@@ -7,8 +7,11 @@ std::vector<std::string>* Logger::getMessages()
 	return &m_messages;
 }
 
-void Logger::addMessage(std::string message)
+void Logger::addMessage(std::string message, int level)
 {
+	if (level == 1) m_containsWarnings = true;
+	if (level == 2) m_containsErrors   = true;
+
 	m_messages.push_back(message);
 }
 
@@ -20,6 +23,13 @@ void Logger::saveToFile(std::string filePath)
 	for (int i = 0; i < timeString.length(); i++)
 		if (timeString[i] == ':' || timeString[i] == '.')
 			timeString[i] = '-';
+
+	if (m_containsErrors)
+		timeString = "[ERR] " + timeString;
+	else if (m_containsWarnings)
+		timeString = "[WAR] " + timeString;
+	else
+		timeString = "[CLR] " + timeString;
 
 	filePath += timeString + ".log";
 
@@ -66,5 +76,5 @@ void logMessage(std::string message, std::string author, int level)
 
 	std::string updatedMessage = std::to_string(level) + timeString + authorString + message;
 
-	logger.addMessage(updatedMessage);
+	logger.addMessage(updatedMessage, level);
 }

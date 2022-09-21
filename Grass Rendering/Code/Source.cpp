@@ -44,7 +44,7 @@ int main()
 /*
 TO DO:
 ------
-+ See what can be cleaned up so far.
++ Look into exceptions/handling and make it so no possible problem will cause a fatal crash.
 + Add GLM to the project.
 + Get a plane loaded in.
 + Create some kind of simple camera that allows for WASD movement.
