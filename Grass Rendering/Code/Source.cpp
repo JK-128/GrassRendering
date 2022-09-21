@@ -47,7 +47,6 @@ int WinMain()
 /*
 TO DO:
 ------
-+ convert paths to local rather than absolute.
 + Get a plane loaded in.
 + Create some kind of simple camera that allows for WASD movement.
 + Add mouse functionality to this.

@@ -104,12 +104,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Dependencies\glad\include;C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Dependencies\glfw-3.3.6.bin.WIN64\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Grass Rendering\Dependencies\glad\include;$(SolutionDir)\Grass Rendering\Dependencies\glfw-3.3.6.bin.WIN64\glfw-3.3.6.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Dependencies\glfw-3.3.6.bin.WIN64\glfw-3.3.6.bin.WIN64\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Grass Rendering\Dependencies\glfw-3.3.6.bin.WIN64\glfw-3.3.6.bin.WIN64\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
