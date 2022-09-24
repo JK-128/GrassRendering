@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="Code\Source.cpp" />
     <ClCompile Include="Code\Graphics\Window.cpp" />
+    <ClCompile Include="Code\Utility\DeltaTime.cpp" />
     <ClCompile Include="Code\Utility\Logger.cpp" />
     <ClCompile Include="Code\Interface\Console.cpp" />
     <ClCompile Include="Dependencies\glad.c" />
@@ -144,6 +145,7 @@
     <ClCompile Include="Code\Interface\ImGuiWrapper.cpp" />
     <ClCompile Include="Code\Interface\ImGuiBase.cpp" />
     <ClCompile Include="Code\Graphics\Shader.cpp" />
+    <ClCompile Include="Code\Interface\FrameRate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Graphics\Window.h" />
@@ -153,6 +155,7 @@
     <ClInclude Include="Code\Interface\Console.h" />
     <ClInclude Include="Code\Interface\ImGuiBase.h" />
     <ClInclude Include="Code\Graphics\Shader.h" />
+    <ClInclude Include="Code\Interface\FrameRate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

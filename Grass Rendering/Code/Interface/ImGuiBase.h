@@ -4,6 +4,9 @@
 #include "../../Dependencies/imgui-master/imgui-master/imgui_impl_glfw.h"
 #include "../../Dependencies/imgui-master/imgui-master/imgui_internal.h"
 
+#include "../Utility/Logger.h"
+#include "../Utility/DeltaTime.h"
+
 class ImGuiBase
 {
 public:

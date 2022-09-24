@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Graphics/Window.h"
 #include "Interface/Console.h"
+#include "Interface/FrameRate.h"
 #include "Graphics/Shader.h"
 #include "Utility/DeltaTime.h"
 
@@ -14,7 +15,7 @@ int WinMain()
 
 	logMessage("Grass Renderer Program Started.", "MAIN");
 
-	Window window(800, 800, "Test Window", true, true);
+	Window window(1920, 1080, "Test Window", true, true);
 
 	Shader shader("Content/Shaders/vert.glsl", "Content/Shaders/frag.glsl");
 
@@ -22,12 +23,13 @@ int WinMain()
 	{
 		imgui = new ImGuiWrapper(window.getGlfwWindow());
 
-		Console console;
-	
+		Console   console;
+		FrameRate fps;
+
 		while (!window.isClosing())
 		{
 			updateDeltaTime();
-
+	
 			window.clear();
 
 			imgui->drawObjects();

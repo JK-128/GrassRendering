@@ -1,7 +1,7 @@
 #pragma once
 #include <GLFW/glfw3.h>
 
-static double deltaTime = 0.0;
+extern double deltaTime;
 static double lastFrame = 0.0;
 
 static void updateDeltaTime()
