@@ -8,6 +8,7 @@
 #include "Interface/FrameRate.h"
 #include "Graphics/Shader.h"
 #include "Utility/DeltaTime.h"
+#include "Objects/Quad.h"
 
 int WinMain()
 {
@@ -17,8 +18,6 @@ int WinMain()
 
 	Window window(1920, 1080, "Test Window", true, true);
 
-	Shader shader("Content/Shaders/vert.glsl", "Content/Shaders/frag.glsl");
-
 	if (window.isCreated())
 	{
 		imgui = new ImGuiWrapper(window.getGlfwWindow());
@@ -26,12 +25,14 @@ int WinMain()
 		Console   console;
 		FrameRate fps;
 
+		Quad quad;
+
 		while (!window.isClosing())
 		{
 			updateDeltaTime();
 	
 			window.clear();
-
+			quad.draw();
 			imgui->drawObjects();
 
 			window.swap();
@@ -51,11 +52,6 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Implement a delta time feature.
-+ Create an interface element to display the framerate.
-	+ Could do a graph like in CSGMod?
-+ Create an object base class to contain OpenGL code.
-+ Get a plane loaded in.
 + Create some kind of simple camera that allows for WASD movement.
 + Add mouse functionality to this.
 + Implement a sky box.

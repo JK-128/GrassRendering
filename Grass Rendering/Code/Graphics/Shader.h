@@ -16,7 +16,7 @@ private:
 	std::string m_vertexPath    = "NULL";
 	std::string m_fragementPath = "NULL";
 
-	bool m_compiled = false;
+	bool m_compiled = true;
 
 public:
 	Shader(std::string vertPath, std::string fragPath);

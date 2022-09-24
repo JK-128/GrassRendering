@@ -13,6 +13,7 @@ Shader::Shader(std::string vertPath, std::string fragPath)
 	if (vertSource == "NULL" || fragSource == "NULL")
 	{
 		logMessage("Could not create shader program.", "SHDR", 2);
+		m_compiled = false;
 		return;
 	}
 
@@ -29,6 +30,7 @@ Shader::Shader(std::string vertPath, std::string fragPath)
 	{
 		glGetShaderInfoLog(m_vert, 512, NULL, m_shaderLog);
 		logMessage("Could not compile VERTEX SHADER: " + std::string(m_shaderLog), "SHDR", 2);
+		m_compiled = false;
 	}
 
 	glCompileShader(m_frag);
@@ -38,6 +40,7 @@ Shader::Shader(std::string vertPath, std::string fragPath)
 	{
 		glGetShaderInfoLog(m_frag, 512, NULL, m_shaderLog);
 		logMessage("Could not compile FRAGMENT SHADER: " + std::string(m_shaderLog), "SHDR", 2);
+		m_compiled = false;
 	}
 
 	m_program = glCreateProgram();
@@ -49,7 +52,10 @@ Shader::Shader(std::string vertPath, std::string fragPath)
 	glGetProgramiv(m_program, GL_LINK_STATUS, &success);
 
 	if (!success)
+	{
 		logMessage("Failed to link program.", "SHDR", 2);
+		m_compiled = false;
+	}
 
 	glDeleteShader(m_vert);
 	glDeleteShader(m_frag);
