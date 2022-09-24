@@ -9,6 +9,8 @@ class Logger
 {
 private:
 	std::vector<std::string> m_messages;
+	
+	std::string m_currentFile = "NULL";
 
 	int m_position      =  0;
 	int m_previousLevel = -1;
@@ -20,7 +22,7 @@ public:
 	std::vector<std::string>* getMessages();
 
 	void addMessage(std::string message, int level = 0);
-	void saveToFile(std::string path);
+	void saveToFile();
 };
 
 extern Logger logger;

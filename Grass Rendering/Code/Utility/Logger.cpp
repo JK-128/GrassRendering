@@ -9,50 +9,46 @@ std::vector<std::string>* Logger::getMessages()
 
 void Logger::addMessage(std::string message, int level)
 {
+	if (m_currentFile == "NULL")
+	{
+		m_currentFile = getCurrentTimeString();
+
+		for (int i = 0; i < m_currentFile.length(); i++)
+			if (m_currentFile[i] == ':' || m_currentFile[i] == '.')
+				m_currentFile[i] = '-';
+	}
+
 	if (level == 1) m_containsWarnings = true;
-	if (level == 2) m_containsErrors   = true;
+	if (level == 2) m_containsErrors = true;
 
 	m_messages.push_back(message);
+
+	saveToFile();
 }
 
-void Logger::saveToFile(std::string filePath)
+void Logger::saveToFile()
 {
-	std::string timeString = getCurrentTimeString();
-
-	//Replacing 'time unit separators' so can be used in file name.
-	for (int i = 0; i < timeString.length(); i++)
-		if (timeString[i] == ':' || timeString[i] == '.')
-			timeString[i] = '-';
-
-	if (m_containsErrors)
-		timeString += " [ERR]";
-	else if (m_containsWarnings)
-		timeString += " [WAR]";
-	else
-		timeString += " [CLR]";
-
-	filePath += timeString + ".log";
+	std::string filePath = "Logs/" + m_currentFile + ".log";
 
 	std::fstream file;
-	file.open(filePath, std::ios::app);
+	file.open(filePath, std::ios_base::app);
 
-	for (std::string message : m_messages)
-	{
-		int level = std::stoi(message.substr(0, 1));
+	std::string message = m_messages[m_messages.size() - 1];
 
-		message = message.substr(1, message.size() - 1);
-		
-		if ((m_previousLevel != level) && (m_previousLevel != -1))
-			file << "\n";
+	int level = std::stoi(message.substr(0, 1));
 
-		if (level == 0) message = "[CLR]" + message;
-		if (level == 1) message = "[WAR]" + message;
-		if (level == 2) message = "[ERR]" + message;
+	message = message.substr(1, message.size() - 1);
+	
+	if ((m_previousLevel != level) && (m_previousLevel != -1))
+		file << "\n";
 
-		file << message << "\n";
-		
-		m_previousLevel = level;
-	}
+	if (level == 0) message = "[CLR]" + message;
+	if (level == 1) message = "[WAR]" + message;
+	if (level == 2) message = "[ERR]" + message;
+
+	file << message << "\n";
+	
+	m_previousLevel = level;
 
 	file.close();
 }

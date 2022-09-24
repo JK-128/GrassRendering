@@ -43,7 +43,7 @@ int WinMain()
 	glfwTerminate();
 
 	logMessage("Grass Rendering Program closing.", "MAIN");
-	logger.saveToFile("Logs/");
+	//logger.saveToFile();
 
 	return 0;
 }
@@ -52,6 +52,11 @@ int WinMain()
 /*
 TO DO:
 ------
++ Ammend logger saving to file so it still happens even with fatal crashes.
++ Check for and cover error conditions in newly added sections.
++ Create input system
+	+ Enum to map strings to GLFW keys.
+	+ function to take a string and return bool based on if key is pressed/down.
 + Create some kind of simple camera that allows for WASD movement.
 + Add mouse functionality to this.
 + Implement a sky box.
