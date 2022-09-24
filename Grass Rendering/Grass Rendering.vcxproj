@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Graphics\Window.h" />
+    <ClInclude Include="Code\Utility\DeltaTime.h" />
     <ClInclude Include="Code\Utility\Logger.h" />
     <ClInclude Include="Code\Interface\ImGuiWrapper.h" />
     <ClInclude Include="Code\Interface\Console.h" />

@@ -5,8 +5,8 @@
 #include <iostream>
 #include "Graphics/Window.h"
 #include "Interface/Console.h"
-
 #include "Graphics/Shader.h"
+#include "Utility/DeltaTime.h"
 
 int WinMain()
 {
@@ -26,6 +26,8 @@ int WinMain()
 	
 		while (!window.isClosing())
 		{
+			updateDeltaTime();
+
 			window.clear();
 
 			imgui->drawObjects();
@@ -47,8 +49,15 @@ int WinMain()
 /*
 TO DO:
 ------
++ Implement a delta time feature.
++ Create an interface element to display the framerate.
+	+ Could do a graph like in CSGMod?
++ Create an object base class to contain OpenGL code.
 + Get a plane loaded in.
 + Create some kind of simple camera that allows for WASD movement.
 + Add mouse functionality to this.
 + Implement a sky box.
+
+	Remember not to overcomplicate the shaders. No need for lighting/PBR/GI etc.
+	Keep it simple so you can focus on the actual interesting parts of the grass sim.
 */
