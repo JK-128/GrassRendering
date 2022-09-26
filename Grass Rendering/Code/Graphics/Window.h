@@ -3,6 +3,7 @@
 #include <GLFW/glfw3.h>
 
 #include "../Utility/Logger.h"
+#include "../Utility/Input.h"
 
 class Window
 {

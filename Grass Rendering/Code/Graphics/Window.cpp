@@ -76,6 +76,9 @@ void Window::poll()
 {
 	glfwPollEvents();
 
+	if (isKeyPressed("Escape"))
+		close();
+
 	if (glfwWindowShouldClose(mp_window))
 		close();
 }
@@ -87,6 +90,8 @@ void Window::swap()
 
 void Window::close()
 {
+	glfwSetWindowShouldClose(mp_window, true);
+
 	logMessage("Window closing.", "WNDW");
 
 	m_closing = true;
@@ -94,6 +99,6 @@ void Window::close()
 
 void Window::clear()
 {
-	glClearColor(0.2, 0.03f, 0.1f, 1.0f);
+	glClearColor(0.2f, 0.03f, 0.1f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

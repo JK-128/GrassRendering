@@ -9,6 +9,7 @@
 #include "Graphics/Shader.h"
 #include "Utility/DeltaTime.h"
 #include "Objects/Quad.h"
+#include "Utility/Input.h"
 
 int WinMain()
 {
@@ -21,6 +22,9 @@ int WinMain()
 	if (window.isCreated())
 	{
 		imgui = new ImGuiWrapper(window.getGlfwWindow());
+		
+		inputWindowRef = window.getGlfwWindow();
+		windowAssigned = true;
 
 		Console   console;
 		FrameRate fps;
@@ -52,8 +56,6 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Ammend logger saving to file so it still happens even with fatal crashes.
-+ Check for and cover error conditions in newly added sections.
 + Create input system
 	+ Enum to map strings to GLFW keys.
 	+ function to take a string and return bool based on if key is pressed/down.
