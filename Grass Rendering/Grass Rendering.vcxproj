@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Code\Graphics\Camera.cpp" />
     <ClCompile Include="Code\Utility\Input.cpp" />
     <ClCompile Include="Code\Source.cpp" />
     <ClCompile Include="Code\Graphics\Window.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="Code\Objects\Quad.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Code\Graphics\Camera.h" />
     <ClInclude Include="Code\Graphics\Window.h" />
     <ClInclude Include="Code\Utility\DeltaTime.h" />
     <ClInclude Include="Code\Utility\Input.h" />

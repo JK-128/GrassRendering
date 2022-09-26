@@ -10,7 +10,12 @@ extern bool windowAssigned;
 static std::map<std::string, int> stringToGlfwInput
 {
 	{"Escape", GLFW_KEY_ESCAPE},
-	{"w", GLFW_KEY_W}
+	{"w", GLFW_KEY_W},
+	{"s", GLFW_KEY_S},
+	{"a", GLFW_KEY_A},
+	{"d", GLFW_KEY_D},
+	{"q", GLFW_KEY_Q},
+	{"e", GLFW_KEY_E}
 };
 
 static bool isKeyPressed(std::string key)

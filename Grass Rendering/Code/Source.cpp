@@ -10,6 +10,7 @@
 #include "Utility/DeltaTime.h"
 #include "Objects/Quad.h"
 #include "Utility/Input.h"
+#include "Graphics/Camera.h"
 
 int WinMain()
 {
@@ -31,10 +32,13 @@ int WinMain()
 
 		Quad quad;
 
+		Camera camera;
+
 		while (!window.isClosing())
 		{
 			updateDeltaTime();
-	
+			camera.move();
+
 			window.clear();
 			quad.draw();
 			imgui->drawObjects();
@@ -47,7 +51,6 @@ int WinMain()
 	glfwTerminate();
 
 	logMessage("Grass Rendering Program closing.", "MAIN");
-	//logger.saveToFile();
 
 	return 0;
 }
@@ -56,13 +59,8 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Create input system
-	+ Enum to map strings to GLFW keys.
-	+ function to take a string and return bool based on if key is pressed/down.
 + Create some kind of simple camera that allows for WASD movement.
 + Add mouse functionality to this.
++ Check that the plane is loading correctly.
 + Implement a sky box.
-
-	Remember not to overcomplicate the shaders. No need for lighting/PBR/GI etc.
-	Keep it simple so you can focus on the actual interesting parts of the grass sim.
 */
