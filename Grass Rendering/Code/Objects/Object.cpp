@@ -11,13 +11,16 @@ Object::Object()
 	glGenVertexArrays(1, &m_VAO);
 	glGenBuffers(1, &m_VBO);
 	glGenBuffers(1, &m_EBO);
-
-	update();
 }
 
 Object::~Object()
 {
 	delete m_shader;
+}
+
+color Object::getColor()
+{
+	return m_color;
 }
 
 void Object::setup(int vertices, int indices, int offset)
@@ -29,8 +32,11 @@ void Object::setup(int vertices, int indices, int offset)
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 	glBufferData(GL_ARRAY_BUFFER, vertices * sizeof(float), &m_vertices[0], GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices * sizeof(int), &m_indices[0], GL_STATIC_DRAW);
+	if (m_elements)
+	{
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices * sizeof(int), &m_indices[0], GL_STATIC_DRAW);
+	}
 
 	//Vertex Positions:
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, offset * sizeof(float), (void*)0);
@@ -61,9 +67,9 @@ void Object::draw()
 	if (m_elements)
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	else
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, m_triangleCount);
 
-	glBindVertexArray(0);
+	//glBindVertexArray(0);
 }
 
 void Object::move(float x, float y, float z)
@@ -137,4 +143,18 @@ void Object::updateView(glm::mat4 view)
 {
 	m_shader->bind();
 	m_shader->setM4("view", view);
+}
+
+void Object::setColor(float r, float g, float b, float a)
+{
+	m_shader->bind();
+	m_color = color{ r, g, b, a };
+	m_shader->setV4("color", glm::vec4(m_color.r, m_color.g, m_color.b, m_color.a));
+}
+
+void Object::setColor(color newColor)
+{
+	m_shader->bind();
+	m_color = newColor;
+	m_shader->setV4("color", glm::vec4(m_color.r, m_color.g, m_color.b, m_color.a));
 }

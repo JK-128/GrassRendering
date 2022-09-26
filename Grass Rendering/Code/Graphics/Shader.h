@@ -4,6 +4,14 @@
 #include "../../Dependencies/glm/glm/matrix.hpp"
 #include <glad/glad.h>
 
+typedef struct 
+{ 
+	float r; 
+	float g; 
+	float b; 
+	float a; 
+} color;
+
 class Shader
 {
 private:

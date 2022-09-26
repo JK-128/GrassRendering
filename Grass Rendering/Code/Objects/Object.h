@@ -21,7 +21,10 @@ class Object
 protected:
 	Shader* m_shader;
 
+	color m_color{ 1.0f, 1.0f, 1.0f, 1.0f };
+
 	int m_index = 0;
+	int m_triangleCount = 3;
 
 	unsigned int m_VAO = 0;
 	unsigned int m_VBO = 0;
@@ -41,8 +44,10 @@ public:
 	Object();
 	~Object();
 
+	color getColor();
+
 	void setup(int vertices, int indices, int offset = 3);
-	void draw();
+	virtual void draw();
 
 	void move(float x, float y, float z);
 	void move(glm::vec3 offset);
@@ -58,5 +63,8 @@ public:
 
 	void update();
 	void updateView(glm::mat4 view);
+
+	void setColor(float r, float g, float b, float a);
+	void setColor(color newColor);
 };
 

@@ -1,5 +1,7 @@
 #pragma once
 #include "../Utility/Logger.h"
+#include "../Graphics/Shader.h"
+
 #include "ImGuiWrapper.h"
 
 class Console : public ImGuiBase
@@ -25,7 +27,6 @@ public:
 	void printMessage(std::string message);
 };
 
-typedef struct { float r; float g; float b; float a; } color;
 
 static color MessageColors[] =
 {

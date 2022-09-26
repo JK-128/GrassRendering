@@ -76,7 +76,7 @@ void Window::create(bool initGlad)
 			logMessage("GLAD initialised.", "WNDW");
 
 			glEnable(GL_DEPTH_TEST);
-			glDepthFunc(GL_LESS);
+			glDepthFunc(GL_LEQUAL);
 		}
 	}
 }

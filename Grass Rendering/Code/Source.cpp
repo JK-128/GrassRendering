@@ -11,6 +11,7 @@
 #include "Objects/Quad.h"
 #include "Utility/Input.h"
 #include "Graphics/Camera.h"
+#include "Objects/SkyBox.h"
 
 int WinMain()
 {
@@ -31,6 +32,14 @@ int WinMain()
 		FrameRate fps;
 
 		Quad quad;
+		Quad quad2;
+		SkyBox skybox;
+
+		quad.scale(2.0f, 2.0f, 2.0f);
+		quad2.setPosition(0.0f, 0.0f, 2.0f);
+		quad.setColor(1.0f, 0.0f, 0.0f, 1.0f);
+		skybox.setColor(0.1f, 0.2f, 0.7f, 1.0f);
+		skybox.scale(glm::vec3(50.0f));
 
 		Camera camera;
 
@@ -42,8 +51,16 @@ int WinMain()
 			camera.look();
 
 			window.clear();
+
 			quad.updateView(camera.getView());
 			quad.draw();
+
+			quad2.updateView(camera.getView());
+			quad2.draw();
+
+			skybox.updateView(camera.getView());
+			skybox.draw();
+
 			imgui->drawObjects();
 
 			window.swap();
@@ -62,5 +79,8 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Implement a sky box.
++ Get a texture class working to load textures
++ Use these with the plane
++ Create custom shaders for the skybox.
++ Load a textured skybox to test.
 */

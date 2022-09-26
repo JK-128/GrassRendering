@@ -1,5 +1,2 @@
-﻿  Camera.cpp
-  Source.cpp
-  Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+﻿  Source.cpp
   Grass Rendering.vcxproj -> C:\Users\joe\Desktop\Works\Grass Rendering\x64\Debug\Grass Rendering.exe

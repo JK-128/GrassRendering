@@ -150,6 +150,7 @@
     <ClCompile Include="Code\Interface\FrameRate.cpp" />
     <ClCompile Include="Code\Objects\Object.cpp" />
     <ClCompile Include="Code\Objects\Quad.cpp" />
+    <ClCompile Include="Code\Objects\SkyBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Graphics\Camera.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Code\Interface\FrameRate.h" />
     <ClInclude Include="Code\Objects\Object.h" />
     <ClInclude Include="Code\Objects\Quad.h" />
+    <ClInclude Include="Code\Objects\SkyBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
