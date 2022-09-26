@@ -7,6 +7,7 @@
 #include "../Graphics/Shader.h"
 #include "../Utility/DeltaTime.h"
 #include "../Utility/Logger.h"
+#include "../Graphics/Texture.h"
 
 typedef struct {
 	glm::mat4 proj;
@@ -19,7 +20,8 @@ typedef struct {
 class Object
 {
 protected:
-	Shader* m_shader;
+	Texture* m_texture;
+	Shader*  m_shader;
 
 	color m_color{ 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -37,6 +39,7 @@ protected:
 	bool m_normals   = true;
 	bool m_texCoords = true;
 	bool m_visible   = true;
+	bool m_textured  = false;
 
 	transform m_transform;
 
@@ -66,5 +69,8 @@ public:
 
 	void setColor(float r, float g, float b, float a);
 	void setColor(color newColor);
+
+	void setTexture(Texture* texture);
+	void setTexture(std::string path);
 };
 

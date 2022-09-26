@@ -11,6 +11,8 @@ Object::Object()
 	glGenVertexArrays(1, &m_VAO);
 	glGenBuffers(1, &m_VBO);
 	glGenBuffers(1, &m_EBO);
+
+	setColor(m_color);
 }
 
 Object::~Object()
@@ -42,15 +44,10 @@ void Object::setup(int vertices, int indices, int offset)
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, offset * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	if (m_normals)
-	{
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, offset * sizeof(float), (void*)(3 * sizeof(float)));
-		glEnableVertexAttribArray(1);
-	}
 	if (m_texCoords)
 	{
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, offset * sizeof(float), (void*)(6 * sizeof(float)));
-		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, offset * sizeof(float), (void*)(3 * sizeof(float)));
+		glEnableVertexAttribArray(1);
 	}
 
 	update();
@@ -64,12 +61,16 @@ void Object::draw()
 
 	glBindVertexArray(m_VAO);
 
+	if (m_textured)
+		m_texture->bind();
+
 	if (m_elements)
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	else
 		glDrawArrays(GL_TRIANGLES, 0, m_triangleCount);
 
-	//glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindVertexArray(0);
 }
 
 void Object::move(float x, float y, float z)
@@ -157,4 +158,20 @@ void Object::setColor(color newColor)
 	m_shader->bind();
 	m_color = newColor;
 	m_shader->setV4("color", glm::vec4(m_color.r, m_color.g, m_color.b, m_color.a));
+}
+
+void Object::setTexture(Texture* texture)
+{
+	m_shader->bind();
+	m_texture  = texture;
+	m_textured = true;
+	m_shader->setB("textured", true);
+}
+
+void Object::setTexture(std::string path)
+{
+	Texture newTexture(path);
+	m_texture  = &newTexture;
+	m_textured = true;
+	m_shader->setB("textured", true);
 }

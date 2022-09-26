@@ -31,15 +31,19 @@ int WinMain()
 		Console   console;
 		FrameRate fps;
 
+		Texture texture("Content/Textures/test.png");
+
 		Quad quad;
 		Quad quad2;
 		SkyBox skybox;
 
 		quad.scale(2.0f, 2.0f, 2.0f);
 		quad2.setPosition(0.0f, 0.0f, 2.0f);
-		quad.setColor(1.0f, 0.0f, 0.0f, 1.0f);
+		quad2.setColor(1.0f, 0.0f, 0.0f, 1.0f);
 		skybox.setColor(0.1f, 0.2f, 0.7f, 1.0f);
 		skybox.scale(glm::vec3(50.0f));
+
+		quad.setTexture(&texture);
 
 		Camera camera;
 
