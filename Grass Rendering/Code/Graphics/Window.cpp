@@ -56,6 +56,7 @@ void Window::create(bool initGlad)
 	mp_window = glfwCreateWindow(m_width, m_height, m_title, 0, 0);
 
 	glfwMakeContextCurrent(mp_window);
+	glfwSetCursorPosCallback(mp_window, mouse_callback);
 
 	if (initGlad)
 	{

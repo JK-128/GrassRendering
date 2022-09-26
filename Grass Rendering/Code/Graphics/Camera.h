@@ -36,6 +36,6 @@ public:
 	void update();
 	void updateVectors();
 	void move();
-	void look(double x, double y);
+	void look();
 };
 

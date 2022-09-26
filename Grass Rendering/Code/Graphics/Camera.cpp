@@ -68,10 +68,10 @@ void Camera::move()
 	update();
 }
 
-void Camera::look(double x, double y)
+void Camera::look()
 {
-	m_yaw   += (float)x * m_lookSpeed * (float)deltaTime;
-	m_pitch += (float)y * m_lookSpeed * (float)deltaTime;
+	m_yaw   += (float)lastX * m_lookSpeed * (float)deltaTime;
+	m_pitch += (float)lastY * m_lookSpeed * (float)deltaTime;
 
 	if (m_pitch >  89.0f) m_pitch =  89.0f;
 	if (m_pitch < -89.0f) m_pitch = -89.0f;

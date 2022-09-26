@@ -7,6 +7,11 @@
 extern GLFWwindow* inputWindowRef;
 extern bool windowAssigned;
 
+static double xOffset;
+static double yOffset;
+static double lastX;
+static double lastY;
+
 static std::map<std::string, int> stringToGlfwInput
 {
 	{"Escape", GLFW_KEY_ESCAPE},
@@ -37,4 +42,13 @@ static bool isKeyPressed(std::string key)
 	}
 
 	return false;
+}
+
+static void mouse_callback(GLFWwindow* window, double xPos, double yPos)
+{
+	xOffset = xPos - lastX;
+	yOffset = lastY - yPos;
+
+	lastX = xPos;
+	lastY = yPos;
 }

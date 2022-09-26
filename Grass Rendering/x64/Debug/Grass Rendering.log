@@ -1,23 +1,7 @@
 ﻿  Camera.cpp
-  Input.cpp
-  Source.cpp
   Window.cpp
-  DeltaTime.cpp
-  Logger.cpp
-  Console.cpp
-  imgui.cpp
-  imgui_draw.cpp
-  imgui_impl_glfw.cpp
-  imgui_impl_opengl3.cpp
-  imgui_tables.cpp
-  imgui_widgets.cpp
-  ImGuiWrapper.cpp
-  ImGuiBase.cpp
-  Shader.cpp
-  FrameRate.cpp
-  Object.cpp
-  Quad.cpp
+  Source.cpp
+  Input.cpp
   Generating Code...
-  glad.c
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Grass Rendering.vcxproj -> C:\Users\joe\Desktop\Works\Grass Rendering\x64\Debug\Grass Rendering.exe

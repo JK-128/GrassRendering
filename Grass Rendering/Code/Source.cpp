@@ -38,6 +38,7 @@ int WinMain()
 		{
 			updateDeltaTime();
 			camera.move();
+			camera.look();
 
 			window.clear();
 			quad.draw();
@@ -59,7 +60,6 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Create some kind of simple camera that allows for WASD movement.
 + Add mouse functionality to this.
 + Check that the plane is loading correctly.
 + Implement a sky box.
