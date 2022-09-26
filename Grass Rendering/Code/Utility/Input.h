@@ -7,10 +7,18 @@
 extern GLFWwindow* inputWindowRef;
 extern bool windowAssigned;
 
-static double xOffset;
-static double yOffset;
-static double lastX;
-static double lastY;
+extern double xOffset;
+extern double yOffset;
+extern double lastX;
+extern double lastY;
+
+extern bool moved;
+extern bool camForward;
+extern bool camBackward;
+extern bool camLeft;
+extern bool camRight;
+extern bool camUp;
+extern bool camDown;
 
 static std::map<std::string, int> stringToGlfwInput
 {
@@ -51,4 +59,52 @@ static void mouse_callback(GLFWwindow* window, double xPos, double yPos)
 
 	lastX = xPos;
 	lastY = yPos;
+
+	moved = true;
+}
+
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_W)
+	{
+		if (action == GLFW_PRESS)
+			camForward = true;
+		if (action == GLFW_RELEASE)
+			camForward = false;
+	}
+	if (key == GLFW_KEY_S)
+	{
+		if (action == GLFW_PRESS)
+			camBackward = true;
+		if (action == GLFW_RELEASE)
+			camBackward = false;
+	}
+	if (key == GLFW_KEY_A)
+	{
+		if (action == GLFW_PRESS)
+			camLeft = true;
+		if (action == GLFW_RELEASE)
+			camLeft = false;
+	}
+	if (key == GLFW_KEY_D)
+	{
+		if (action == GLFW_PRESS)
+			camRight = true;
+		if (action == GLFW_RELEASE)
+			camRight = false;
+	}
+	if (key == GLFW_KEY_Q)
+	{
+		if (action == GLFW_PRESS)
+			camUp = true;
+		if (action == GLFW_RELEASE)
+			camUp = false;
+	}
+	if (key == GLFW_KEY_E)
+	{
+		if (action == GLFW_PRESS)
+			camDown = true;
+		if (action == GLFW_RELEASE)
+			camDown = false;
+	}
 }

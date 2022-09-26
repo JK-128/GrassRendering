@@ -20,7 +20,7 @@ private:
 	glm::mat4 m_view;
 
 	float m_moveSpeed =  10.0f;
-	float m_lookSpeed =  10.0f;
+	float m_lookSpeed =  100.0f;
 	float m_yaw       = -90.0f;
 	float m_pitch     =   0.0f;
 

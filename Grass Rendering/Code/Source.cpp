@@ -37,10 +37,12 @@ int WinMain()
 		while (!window.isClosing())
 		{
 			updateDeltaTime();
+
 			camera.move();
 			camera.look();
 
 			window.clear();
+			quad.updateView(camera.getView());
 			quad.draw();
 			imgui->drawObjects();
 
@@ -60,7 +62,5 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Add mouse functionality to this.
-+ Check that the plane is loading correctly.
 + Implement a sky box.
 */

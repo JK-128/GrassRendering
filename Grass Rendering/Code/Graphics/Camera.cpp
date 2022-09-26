@@ -2,14 +2,14 @@
 
 Camera::Camera()
 {
-	m_pos    = glm::vec3(0.0f, 0.0f, 3.0f);
+	m_pos    = glm::vec3(0.0f, 0.0f,  3.0f);
 	m_front  = glm::vec3(0.0f, 0.0f, -1.0f);
-	m_cUp    = glm::vec3(0.0f, 1.0f, 0.0f);
-	m_target = glm::vec3(0.0f);
+	m_cUp    = glm::vec3(0.0f, 1.0f,  0.0f);
+	m_target = glm::vec3(0.0f, 0.0f,  0.0f);
 
 	m_dir   = glm::normalize(m_pos - m_target);
 	m_right = glm::normalize(glm::cross(m_cUp, m_dir));
-	m_wUp   = glm::cross(m_dir, m_dir);
+	m_wUp   = glm::cross(m_dir, m_right);
 
 	updateVectors();
 }
@@ -58,26 +58,31 @@ void Camera::move()
 {
 	float velocity = m_moveSpeed * (float)deltaTime;
 
-	if      (isKeyPressed("w"))  m_pos += m_front * velocity;
-	else if (isKeyPressed("s")) m_pos -= m_front * velocity;
-	else if (isKeyPressed("a")) m_pos -= m_right * velocity;
-	else if (isKeyPressed("d")) m_pos += m_right * velocity;
-	else if (isKeyPressed("q")) m_pos += m_wUp   * velocity;
-	else if (isKeyPressed("e")) m_pos -= m_wUp   * velocity;
+	if      (camForward)  m_pos += m_front * velocity;
+	else if (camBackward) m_pos -= m_front * velocity;
+	else if (camLeft)     m_pos -= m_right * velocity;
+	else if (camRight)    m_pos += m_right * velocity;
+	else if (camUp)       m_pos += m_wUp * velocity;
+	else if (camDown)     m_pos -= m_wUp * velocity;
 
 	update();
 }
 
 void Camera::look()
 {
-	m_yaw   += (float)lastX * m_lookSpeed * (float)deltaTime;
-	m_pitch += (float)lastY * m_lookSpeed * (float)deltaTime;
+	if (moved)
+	{
+		moved = false;
 
-	if (m_pitch >  89.0f) m_pitch =  89.0f;
-	if (m_pitch < -89.0f) m_pitch = -89.0f;
+		m_yaw += (float)xOffset * m_lookSpeed * (float)deltaTime;
+		m_pitch += (float)yOffset * m_lookSpeed * (float)deltaTime;
 
-	if (m_yaw >  360.0f) m_yaw -= 360.0f;
-	if (m_yaw < -360.0f) m_yaw += 360.0f;
+		if (m_pitch > 89.0f) m_pitch = 89.0f;
+		if (m_pitch < -89.0f) m_pitch = -89.0f;
 
-	updateVectors();
+		if (m_yaw > 360.0f) m_yaw -= 360.0f;
+		if (m_yaw < -360.0f) m_yaw += 360.0f;
+
+		updateVectors();
+	}
 }

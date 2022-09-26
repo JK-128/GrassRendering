@@ -28,6 +28,8 @@ void Logger::addMessage(std::string message, int level)
 
 void Logger::saveToFile()
 {
+	if (LOGGING == 0) return;
+
 	std::string filePath = "Logs/" + m_currentFile + ".log";
 
 	std::fstream file;

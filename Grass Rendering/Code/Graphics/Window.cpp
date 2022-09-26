@@ -53,10 +53,18 @@ void Window::create(bool initGlad)
 
 	logMessage("Window created.", "WNDW");
 
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_SAMPLES, 4);
+
 	mp_window = glfwCreateWindow(m_width, m_height, m_title, 0, 0);
 
 	glfwMakeContextCurrent(mp_window);
 	glfwSetCursorPosCallback(mp_window, mouse_callback);
+	glfwSetKeyCallback(mp_window, key_callback);
+	glfwSetInputMode(mp_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSwapInterval(0);
 
 	if (initGlad)
 	{
@@ -100,6 +108,6 @@ void Window::close()
 
 void Window::clear()
 {
-	glClearColor(0.2f, 0.03f, 0.1f, 1.0f);
+	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

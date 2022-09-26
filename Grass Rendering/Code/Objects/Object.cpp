@@ -11,6 +11,8 @@ Object::Object()
 	glGenVertexArrays(1, &m_VAO);
 	glGenBuffers(1, &m_VBO);
 	glGenBuffers(1, &m_EBO);
+
+	update();
 }
 
 Object::~Object()
