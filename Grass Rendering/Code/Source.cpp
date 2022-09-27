@@ -41,6 +41,8 @@ int WinMain()
 		quad2.setPosition(0.0f, 0.0f, 2.0f);
 		quad2.setColor(1.0f, 0.0f, 0.0f, 1.0f);
 
+		quad2.setRotation('x', 90.0f);
+
 		quad.setTexture(&texture);
 
 		Camera camera;
@@ -58,7 +60,7 @@ int WinMain()
 			quad.draw();
 
 			quad2.updateView(camera.getView());
-			//quad2.draw();
+			quad2.draw();
 
 			glm::mat4 skyBoxView = glm::mat4(glm::mat3(camera.getView()));
 			skybox.updateView(skyBoxView);
@@ -82,6 +84,10 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Get rotations working
-	+ Probably don't need quaternions, right?
++ Create a grass object.
++ Create a ground plane object.
++ Pick points on the ground plane.
++ Spawn a blade of grass at each point.
++ Make this a very robust function so that the density can be easily changed.
++ Should get to a instance rendered large plane full of dense grass that is performant.
 */

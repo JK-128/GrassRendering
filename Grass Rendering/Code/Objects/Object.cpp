@@ -88,6 +88,38 @@ void Object::move(glm::vec3 offset)
 	move(offset.x, offset.y, offset.z);
 }
 
+void Object::rotate(char axis, float amount)
+{
+	float angle = glm::radians(amount);
+	
+	glm::vec3 rotAxis;
+
+	if (axis == 'x')
+	{
+		rotAxis = glm::vec3(1.0f, 0.0f, 0.0f);
+		m_transform.rotation.x += amount;
+	}
+	else if (axis == 'y')
+	{
+		rotAxis = glm::vec3(0.0f, 1.0f, 0.0f);
+		m_transform.rotation.y += amount;
+	}
+	else if (axis == 'z')
+	{
+		rotAxis = glm::vec3(0.0f, 0.0f, 1.0f);
+		m_transform.rotation.z += amount;
+	}
+	else
+	{
+		logMessage("Attempting to rotate an object around a non-existent axis: " + axis, "OBJT", 1);
+		return;
+	}
+
+	m_transform.model = glm::rotate(m_transform.model, angle, rotAxis);
+
+	update();
+}
+
 void Object::scale(float x, float y, float z)
 {
 	m_transform.model = glm::scale(m_transform.model, glm::vec3(x, y, z));
@@ -115,6 +147,26 @@ void Object::setPosition(float x, float y, float z)
 void Object::setPosition(glm::vec3 offset)
 {
 	setPosition(offset.x, offset.y, offset.z);
+}
+
+void Object::setRotation(char axis, float amount)
+{
+	glm::vec3 newRot = glm::vec3(0.0f);
+
+	if (axis == 'x') newRot = glm::vec3(amount, 0.0f, 0.0f);
+	else if (axis == 'y') newRot = glm::vec3(0.0f, amount, 0.0f);
+	else if (axis == 'z') newRot = glm::vec3(0.0f, 0.0f, amount);
+	else
+	{
+		logMessage("Attempting to rotate object around nonexistent axis: " + axis, "OBJT", 1);
+		return;
+	}
+
+	glm::vec3 diff = m_transform.rotation - newRot;
+
+	if	    (axis == 'x') rotate('x', diff.x);
+	else if (axis == 'y') rotate('y', diff.y);
+	else if (axis == 'z') rotate('z', diff.z);
 }
 
 void Object::setScale(float x, float y, float z)

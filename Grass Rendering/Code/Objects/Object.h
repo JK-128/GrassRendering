@@ -14,6 +14,7 @@ typedef struct {
 	glm::mat4 view;
 	glm::mat4 model;
 	glm::vec3 position;
+	glm::vec3 rotation;
 	glm::vec3 scale;
 } transform;
 
@@ -55,11 +56,15 @@ public:
 	void move(float x, float y, float z);
 	void move(glm::vec3 offset);
 
+	void rotate(char axis, float amount);
+
 	void scale(float x, float y, float z);
 	void scale(glm::vec3 offset);
 
 	void setPosition(float x, float y, float z);
 	void setPosition(glm::vec3 offset);
+
+	void setRotation(char axis, float amount);
 
 	void setScale(float x, float y, float z);
 	void setScale(glm::vec3 offset);
