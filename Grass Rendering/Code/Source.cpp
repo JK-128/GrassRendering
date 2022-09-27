@@ -35,13 +35,11 @@ int WinMain()
 
 		Quad quad;
 		Quad quad2;
-		SkyBox skybox;
+		SkyBox skybox("Content/Textures/interstellar_skybox", ".png");
 
 		quad.scale(2.0f, 2.0f, 2.0f);
 		quad2.setPosition(0.0f, 0.0f, 2.0f);
 		quad2.setColor(1.0f, 0.0f, 0.0f, 1.0f);
-		skybox.setColor(0.1f, 0.2f, 0.7f, 1.0f);
-		skybox.scale(glm::vec3(50.0f));
 
 		quad.setTexture(&texture);
 
@@ -60,9 +58,10 @@ int WinMain()
 			quad.draw();
 
 			quad2.updateView(camera.getView());
-			quad2.draw();
+			//quad2.draw();
 
-			skybox.updateView(camera.getView());
+			glm::mat4 skyBoxView = glm::mat4(glm::mat3(camera.getView()));
+			skybox.updateView(skyBoxView);
 			skybox.draw();
 
 			imgui->drawObjects();
@@ -83,8 +82,8 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Get a texture class working to load textures
-+ Use these with the plane
 + Create custom shaders for the skybox.
 + Load a textured skybox to test.
++ Get rotations working
+	+ Probably don't need quaternions, right?
 */

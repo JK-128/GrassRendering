@@ -84,6 +84,9 @@
     <ClCompile Include="Dependencies\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Graphics\CubeMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Graphics\Window.h">
@@ -128,5 +131,12 @@
     <ClInclude Include="Code\Graphics\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Graphics\CubeMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Shaders\skyboxVert.glsl" />
+    <None Include="Content\Shaders\skyboxFrag.glsl" />
   </ItemGroup>
 </Project>

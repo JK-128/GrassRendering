@@ -137,6 +137,7 @@
     <ClCompile Include="Code\Utility\DeltaTime.cpp" />
     <ClCompile Include="Code\Utility\Logger.cpp" />
     <ClCompile Include="Code\Interface\Console.cpp" />
+    <ClCompile Include="Code\Graphics\CubeMap.cpp" />
     <ClCompile Include="Dependencies\glad.c" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui.cpp" />
     <ClCompile Include="Dependencies\imgui-master\imgui-master\imgui_draw.cpp" />
@@ -169,6 +170,11 @@
     <ClInclude Include="Code\Objects\Quad.h" />
     <ClInclude Include="Code\Objects\SkyBox.h" />
     <ClInclude Include="Code\Graphics\Texture.h" />
+    <ClInclude Include="Code\Graphics\CubeMap.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Shaders\skyboxFrag.glsl" />
+    <None Include="Content\Shaders\skyboxVert.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
