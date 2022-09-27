@@ -82,8 +82,6 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Create custom shaders for the skybox.
-+ Load a textured skybox to test.
 + Get rotations working
 	+ Probably don't need quaternions, right?
 */
