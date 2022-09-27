@@ -5,12 +5,13 @@ SkyBox::SkyBox(std::string path, std::string type) : Object()
     delete m_shader;
     m_shader = new Shader("Content/Shaders/skyboxVert.glsl", "Content/Shaders/skyboxFrag.glsl");
 
-	m_elements  = false;
-	m_normals   = false;
+	m_elements = false;
+	m_normals  = false;
+    m_skybox   = true;
 
 	m_vertices =
 	{
-          -1.0f,  1.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f,
         -1.0f, -1.0f, -1.0f,
          1.0f, -1.0f, -1.0f,
          1.0f, -1.0f, -1.0f,

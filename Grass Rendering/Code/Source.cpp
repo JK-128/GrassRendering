@@ -13,6 +13,8 @@
 #include "Graphics/Camera.h"
 #include "Objects/SkyBox.h"
 
+#include "Objects/GrassBlade.h"
+
 int WinMain()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -45,7 +47,11 @@ int WinMain()
 
 		quad.setTexture(&texture);
 
+		GrassBlade blade;
+
 		Camera camera;
+
+		quad.setVisibility(false);
 
 		while (!window.isClosing())
 		{
@@ -55,14 +61,28 @@ int WinMain()
 			camera.look();
 
 			window.clear();
-
+			/*
 			quad.updateView(camera.getView());
-			quad.draw();
+			//quad.draw();
 
 			quad2.updateView(camera.getView());
-			quad2.draw();
+			//quad2.draw();
+
+			blade.updateView(camera.getView());
+			//blade.draw();
 
 			glm::mat4 skyBoxView = glm::mat4(glm::mat3(camera.getView()));
+			skybox.updateView(skyBoxView);
+			//skybox.draw();
+			*/
+			glm::mat4 view = camera.getView();
+			for (int i = 0; i < objects.size(); i++)
+			{
+				objects[i]->updateView(view);
+				objects[i]->draw();
+			}
+
+			glm::mat4 skyBoxView = glm::mat4(glm::mat3(view));
 			skybox.updateView(skyBoxView);
 			skybox.draw();
 
@@ -88,6 +108,6 @@ TO DO:
 + Create a ground plane object.
 + Pick points on the ground plane.
 + Spawn a blade of grass at each point.
-+ Make this a very robust function so that the density can be easily changed.
++ Make this a very robust function so that the density can be easily changed. 
 + Should get to a instance rendered large plane full of dense grass that is performant.
 */

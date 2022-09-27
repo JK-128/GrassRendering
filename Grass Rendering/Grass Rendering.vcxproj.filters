@@ -87,6 +87,9 @@
     <ClCompile Include="Code\Graphics\CubeMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Objects\GrassBlade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Graphics\Window.h">
@@ -132,6 +135,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\Graphics\CubeMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Objects\GrassBlade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -41,6 +41,7 @@ protected:
 	bool m_texCoords = true;
 	bool m_visible   = true;
 	bool m_textured  = false;
+	bool m_skybox    = false;
 
 	transform m_transform;
 
@@ -52,6 +53,8 @@ public:
 
 	void setup(int vertices, int indices, int offset = 3);
 	virtual void draw();
+
+	void setVisibility(bool status);
 
 	void move(float x, float y, float z);
 	void move(glm::vec3 offset);
@@ -79,3 +82,4 @@ public:
 	void setTexture(std::string path);
 };
 
+extern std::vector<Object*> objects;

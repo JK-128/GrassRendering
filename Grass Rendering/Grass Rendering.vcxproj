@@ -154,6 +154,7 @@
     <ClCompile Include="Code\Objects\SkyBox.cpp" />
     <ClCompile Include="Code\Graphics\Texture.cpp" />
     <ClCompile Include="Dependencies\stb_image.cpp" />
+    <ClCompile Include="Code\Objects\GrassBlade.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Graphics\Camera.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Code\Objects\SkyBox.h" />
     <ClInclude Include="Code\Graphics\Texture.h" />
     <ClInclude Include="Code\Graphics\CubeMap.h" />
+    <ClInclude Include="Code\Objects\GrassBlade.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Shaders\skyboxFrag.glsl" />

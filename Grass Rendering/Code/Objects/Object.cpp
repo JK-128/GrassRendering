@@ -1,5 +1,7 @@
 #include "Object.h"
 
+std::vector<Object*> objects;
+
 Object::Object()
 {
 	m_shader = new Shader("Content/Shaders/vert.glsl", "Content/Shaders/frag.glsl");
@@ -23,6 +25,11 @@ Object::~Object()
 color Object::getColor()
 {
 	return m_color;
+}
+
+void Object::setVisibility(bool status)
+{
+	m_visible = status;
 }
 
 void Object::setup(int vertices, int indices, int offset)
@@ -51,6 +58,9 @@ void Object::setup(int vertices, int indices, int offset)
 	}
 
 	update();
+
+	if (!m_skybox)
+		objects.push_back(this);
 }
 
 void Object::draw()
