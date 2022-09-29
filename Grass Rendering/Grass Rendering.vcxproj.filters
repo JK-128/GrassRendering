@@ -87,7 +87,7 @@
     <ClCompile Include="Code\Graphics\CubeMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Objects\GrassBlade.cpp">
+    <ClCompile Include="Code\Objects\Grass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -137,12 +137,14 @@
     <ClInclude Include="Code\Graphics\CubeMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Objects\GrassBlade.h">
+    <ClInclude Include="Code\Objects\Grass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Shaders\skyboxVert.glsl" />
     <None Include="Content\Shaders\skyboxFrag.glsl" />
+    <None Include="Content\Shaders\grassVert.glsl" />
+    <None Include="Content\Shaders\grassFrag.glsl" />
   </ItemGroup>
 </Project>

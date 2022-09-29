@@ -13,7 +13,7 @@
 #include "Graphics/Camera.h"
 #include "Objects/SkyBox.h"
 
-#include "Objects/GrassBlade.h"
+#include "Objects/Grass.h"
 
 int WinMain()
 {
@@ -35,23 +35,12 @@ int WinMain()
 
 		Texture texture("Content/Textures/test.png");
 
-		Quad quad;
-		Quad quad2;
 		SkyBox skybox("Content/Textures/interstellar_skybox", ".png");
 
-		quad.scale(2.0f, 2.0f, 2.0f);
-		quad2.setPosition(0.0f, 0.0f, 2.0f);
-		quad2.setColor(1.0f, 0.0f, 0.0f, 1.0f);
-
-		quad2.setRotation('x', 90.0f);
-
-		quad.setTexture(&texture);
-
-		GrassBlade blade;
+		Grass grass;
+		grass.setScale(0.05f, 0.3f, 1.0f);
 
 		Camera camera;
-
-		quad.setVisibility(false);
 
 		while (!window.isClosing())
 		{
@@ -61,20 +50,7 @@ int WinMain()
 			camera.look();
 
 			window.clear();
-			/*
-			quad.updateView(camera.getView());
-			//quad.draw();
 
-			quad2.updateView(camera.getView());
-			//quad2.draw();
-
-			blade.updateView(camera.getView());
-			//blade.draw();
-
-			glm::mat4 skyBoxView = glm::mat4(glm::mat3(camera.getView()));
-			skybox.updateView(skyBoxView);
-			//skybox.draw();
-			*/
 			glm::mat4 view = camera.getView();
 			for (int i = 0; i < objects.size(); i++)
 			{

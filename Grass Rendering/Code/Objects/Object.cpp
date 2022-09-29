@@ -75,7 +75,7 @@ void Object::draw()
 		m_texture->bind();
 
 	if (m_elements)
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
 	else
 		glDrawArrays(GL_TRIANGLES, 0, m_triangleCount);
 
