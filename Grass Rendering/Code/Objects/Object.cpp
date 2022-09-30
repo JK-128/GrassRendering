@@ -237,3 +237,13 @@ void Object::setTexture(std::string path)
 	m_textured = true;
 	m_shader->setB("textured", true);
 }
+
+glm::vec3 Object::getPosition()
+{
+	return m_transform.position;
+}
+
+glm::vec3 Object::getScale()
+{
+	return m_transform.scale;
+}

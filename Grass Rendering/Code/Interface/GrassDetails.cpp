@@ -38,12 +38,21 @@ void GrassDetails::draw()
 		}
 		if (ImGui::CollapsingHeader("Grass"))
 		{
+			ImGui::Text("Count:");
+			ImGui::InputInt("count", &m_count, 50);
+
+			if (ImGui::Button("Update"))
+			{
+				m_grass->updateCount(m_count);
+			}
+
+			m_count = std::max(50, m_count);
+
 			floatProp("Height:", "h", &m_height, 0.05f, false);
 			ImGui::NewLine();
 		}
 		ImGui::Indent(-10.0f);
 	}
-	//ImGui::End();
 
 	Shader* shader = m_grass->getShader();
 

@@ -47,6 +47,8 @@ int WinMain()
 		gDet.attachGrass(&grass);
 		grass.setScale(0.05f, 0.3f, 1.0f);
 
+		//grass.setPosition(3.0f, 0.0f, 1.0f);
+
 		Camera camera;
 		cCtrls.attachCamera(&camera);
 
@@ -90,8 +92,6 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Create an interface element that gives a dropdown menu of different skyboxes.
-+ Give the grass object a plane and it picks points on that plane (rather than random in 3D space).
 + See how the program then handles multiple grass objects.
 	+ If good then proceed as is.
 	+ If bad, then the planes will be a vector for the grass as a whole

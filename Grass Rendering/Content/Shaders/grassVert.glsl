@@ -1,3 +1,7 @@
+//This shader uses noise functions provided through:
+// https://github.com/ashima/webgl-noise
+//MIT license file provided in the repo.
+
 #version 460
 layout (location = 0) in vec3  position;
 layout (location = 1) in vec3  offset;

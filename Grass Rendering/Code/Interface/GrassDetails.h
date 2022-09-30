@@ -18,10 +18,13 @@ private:
 	float m_height     = 0.6f;
 	float m_brightness = 0.3f;
 	float m_contrast   = 2.0f;
+	
+	int m_count = 50;
 
 	bool m_hasGrass = false;
 
 public:
+
 	void draw();
 	void attachGrass(Grass* grass);
 };

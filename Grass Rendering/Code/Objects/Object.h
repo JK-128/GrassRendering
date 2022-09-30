@@ -80,6 +80,9 @@ public:
 
 	void setTexture(Texture* texture);
 	void setTexture(std::string path);
+
+	glm::vec3 getPosition();
+	glm::vec3 getScale();
 };
 
 extern std::vector<Object*> objects;

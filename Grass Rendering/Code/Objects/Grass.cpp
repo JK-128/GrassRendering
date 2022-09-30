@@ -27,28 +27,30 @@ Grass::Grass() : Object()
 		2, 3, 4
 	};
 
-	for (int y = -m_count; y < m_count; y += m_density)
-	{
-		for (int x = -m_count; x < m_count; x += m_density)
-		{
-			float randomOffsetX = (rand() % 100) / 300.0f;
-			float randomOffsetZ = (rand() % 100) / 300.0f;
-			float randomOffsetY = (rand() % 100) / 100.0f;
-
-			glm::vec3 offset = glm::vec3(0.0f);
-
-			offset.x = (float)x * m_spacingX + randomOffsetX;
-			offset.z = (float)y * m_spacingZ + randomOffsetZ;
-			offset.y = randomOffsetY;
-
-			m_positions.push_back(offset);
-		}
-	}
+	setPositions();
 
 	logMessage("No. blades: " + std::to_string(m_positions.size()), "GRSS");
 
 	setup(15, 9, 3);
 
+	setupExtra();
+
+	m_ground.scale(2.0f, 1.0f, 2.0f);
+	m_ground.rotate('x', 90.0f);
+	m_ground.setColor(color{ 0.2, 0.35, 0.11 });
+}
+
+void Grass::updateCount(int count)
+{
+	m_count = count;
+
+	m_positions.clear();
+	setPositions();
+	setupExtra();
+}
+
+void Grass::setupExtra()
+{
 	m_shader->bind();
 
 	glBindVertexArray(m_VAO);
@@ -60,16 +62,9 @@ Grass::Grass() : Object()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(1);
 
-	//glGenBuffers(1, &m_rotVBO);
-	//glBindBuffer(GL_ARRAY_BUFFER, m_rotVBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * m_rotations.size(), &m_rotations[0], GL_STATIC_DRAW);
-	
-	//glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, sizeof(float), (void*)0);
-	//glEnableVertexAttribArray(2);
-
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glVertexAttribDivisor(1, 1);
-	//glVertexAttribDivisor(2, 1);
+
 	glBindVertexArray(0);
 }
 
@@ -86,4 +81,36 @@ void Grass::draw()
 Shader* Grass::getShader()
 {
 	return m_shader;
+}
+
+void Grass::setPositions()
+{
+	m_positions.clear();
+
+	glm::vec3 gPos   = m_ground.getPosition() - glm::vec3(20.0f, 0.0f, 1.0f);
+	glm::vec3 ePos   = glm::vec3(20.0f, 0.0f, -1.0f);
+	glm::vec3 diff   = ePos - gPos;
+
+	float density = diff.x / m_count;
+
+	for (int i = 0; i < m_count; i++)
+	{
+		for (int j = 0; j < m_count; j++)
+		{
+			float randomOffsetX = (rand() % 100) / 300.0f;
+			float randomOffsetZ = (rand() % 100) / 600.0f;
+			float randomOffsetY = (rand() % 100) / 100.0f;
+			
+			randomOffsetX -= 0.08333f;
+			randomOffsetZ -= 0.08333f;
+
+			glm::vec3 newPos = gPos + glm::vec3(i * density, 0.0f, j * (density * 0.05));
+			
+			newPos.x += randomOffsetX;
+			newPos.z += randomOffsetZ;
+			newPos.y  = randomOffsetY;
+
+			m_positions.push_back(newPos);
+		}
+	}
 }
