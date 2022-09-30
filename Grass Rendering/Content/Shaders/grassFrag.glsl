@@ -4,7 +4,12 @@ out vec4 fragColor;
 
 in float height;
 
+uniform vec3 tipColor;
+uniform vec3 baseColor;
+
+uniform float weight = 1.0f;
+
 void main()
 {
-	fragColor = vec4(mix(vec3(0.2, 0.35, 0.11), vec3(0.4, 0.7, 0.22), vec3(height)), 1.0);
+	fragColor = vec4(mix(baseColor, tipColor, vec3(height)), 1.0);
 }

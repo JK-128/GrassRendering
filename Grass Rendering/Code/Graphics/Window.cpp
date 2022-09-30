@@ -63,7 +63,8 @@ void Window::create(bool initGlad)
 	glfwMakeContextCurrent(mp_window);
 	glfwSetCursorPosCallback(mp_window, mouse_callback);
 	glfwSetKeyCallback(mp_window, key_callback);
-	glfwSetInputMode(mp_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetMouseButtonCallback(mp_window, mouse_button_callback);
+
 	glfwSwapInterval(0);
 
 	if (initGlad)

@@ -16,3 +16,4 @@ bool camLeft     = false;
 bool camRight    = false;
 bool camUp       = false;
 bool camDown     = false;
+bool locked      = false;

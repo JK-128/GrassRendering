@@ -24,5 +24,6 @@ public:
 	Grass();
 
 	void draw();
+	Shader* getShader();
 };
 

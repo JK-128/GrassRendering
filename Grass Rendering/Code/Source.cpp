@@ -6,20 +6,22 @@
 #include "Graphics/Window.h"
 #include "Interface/Console.h"
 #include "Interface/FrameRate.h"
+#include "Interface/CamControls.h"
+#include "Interface/GrassDetails.h"
+#include "Interface/SkyboxPicker.h"
 #include "Graphics/Shader.h"
 #include "Utility/DeltaTime.h"
 #include "Objects/Quad.h"
 #include "Utility/Input.h"
 #include "Graphics/Camera.h"
 #include "Objects/SkyBox.h"
-
 #include "Objects/Grass.h"
 
 int WinMain()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	logMessage("Grass Renderer Program Started.", "MAIN");
+	logMessage("Program Started.", "MAIN");
 
 	Window window(1920, 1080, "Test Window", true, true);
 
@@ -30,24 +32,32 @@ int WinMain()
 		inputWindowRef = window.getGlfwWindow();
 		windowAssigned = true;
 
-		Console   console;
-		FrameRate fps;
+		Console      console;
+		FrameRate    fps;
+		CamControls  cCtrls;
+		GrassDetails gDet;
+		SkyboxPicker spbr;
 
 		Texture texture("Content/Textures/test.png");
 
 		SkyBox skybox("Content/Textures/interstellar_skybox", ".png");
+		spbr.attachSkyBox(&skybox);
 
 		Grass grass;
+		gDet.attachGrass(&grass);
 		grass.setScale(0.05f, 0.3f, 1.0f);
 
 		Camera camera;
+		cCtrls.attachCamera(&camera);
 
 		while (!window.isClosing())
 		{
 			updateDeltaTime();
 
 			camera.move();
-			camera.look();
+
+			if(locked)
+				camera.look();
 
 			window.clear();
 
@@ -71,7 +81,7 @@ int WinMain()
 	}
 	glfwTerminate();
 
-	logMessage("Grass Rendering Program closing.", "MAIN");
+	logMessage("Program closing.", "MAIN");
 
 	return 0;
 }
@@ -80,10 +90,17 @@ int WinMain()
 /*
 TO DO:
 ------
-+ Create a grass object.
-+ Create a ground plane object.
-+ Pick points on the ground plane.
-+ Spawn a blade of grass at each point.
-+ Make this a very robust function so that the density can be easily changed. 
-+ Should get to a instance rendered large plane full of dense grass that is performant.
++ Create an interface element that gives a dropdown menu of different skyboxes.
++ Give the grass object a plane and it picks points on that plane (rather than random in 3D space).
++ See how the program then handles multiple grass objects.
+	+ If good then proceed as is.
+	+ If bad, then the planes will be a vector for the grass as a whole
+	  (rather than multiple grass obejcts each with their own plane).
++ Now can figure out how to perform culling and chunking to get an large tilable area
++ Now optimize and update so that the tileable area can be infinite.
++ Last main feature! change the planes to be any 3D geometry
+	+ This is so i can create procedural terrain and put grass on it.
++ Look into ways of creating and using noise that won't mean you're stealing shader code
+	+ Should be some tutorials that will get you a very similar result with non-infringing code.
+	+ Just need to include the license (MIT) and credit.
 */

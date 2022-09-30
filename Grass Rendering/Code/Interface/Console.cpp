@@ -8,45 +8,46 @@ void Console::draw()
 	m_errorCount   = 0;
 	m_warningCount = 0;
 
-	ImGui::SetNextWindowSize(ImVec2((float)m_height, (float)m_width));
-	ImGui::Begin("Console");
+	//ImGui::SetNextWindowSize(ImVec2((float)m_height, (float)m_width));
+	//ImGui::Begin("Console");
+	if (ImGui::CollapsingHeader("Console"))
+	{
+		if (ImGui::IsWindowHovered())
+			imgui->setHovered(true);
 
-	if (ImGui::IsWindowHovered())
-		imgui->setHovered(true);
+		//Footer height used to place buttons properly below text.
+		float ySpacing = ImGui::GetStyle().ItemInnerSpacing.y;
+		float frameHeight = ImGui::GetFrameHeightWithSpacing();
+		float footerHeight = 100;// ySpacing;// +frameHeight;
 
-	//Footer height used to place buttons properly below text.
-	float ySpacing     = ImGui::GetStyle().ItemSpacing.y;
-	float frameHeight  = ImGui::GetFrameHeightWithSpacing();
-	float footerHeight = ySpacing + frameHeight;
+		ImGui::BeginChild("Text", ImVec2(0, footerHeight), false);
 
-	ImGui::BeginChild("Text", ImVec2(0, -footerHeight), false);
+		if (ImGui::IsWindowHovered())
+			imgui->setHovered(true);
 
-	if (ImGui::IsWindowHovered())
-		imgui->setHovered(true);
+		for (int i = 0; i < m_messageCount; i++)
+			printMessage(messageList->at(i));
 
-	for (int i = 0; i < m_messageCount; i++)
-		printMessage(messageList->at(i));
+		//ImGui::SetScrollHereY(1.0f); //(Used to keep the scroll bar at the bottom)
+		ImGui::EndChild();
 
-	ImGui::SetScrollHereY(1.0f); //(Used to keep the scroll bar at the bottom)
-	ImGui::EndChild();
+		std::string errors = "[Errors: " + std::to_string(m_errorCount) + "]";
+		std::string warnings = "[Warnings: " + std::to_string(m_warningCount) + "]";
+		std::string messages = "[Messages: " + std::to_string(m_messageCount) + "]";
 
-	std::string errors   = "[Errors: "   + std::to_string(m_errorCount)   + "]";
-	std::string warnings = "[Warnings: " + std::to_string(m_warningCount) + "]";
-	std::string messages = "[Messages: " + std::to_string(m_messageCount) + "]";
-	
-	ImGui::Separator();
-	if (ImGui::Button(messages.c_str()))
-		m_showMessages = !m_showMessages;
+		ImGui::Separator();
+		if (ImGui::Button(messages.c_str()))
+			m_showMessages = !m_showMessages;
 
-	ImGui::SameLine();
-	if (ImGui::Button(warnings.c_str())) 
-		m_showWarnings = !m_showWarnings;
+		ImGui::SameLine();
+		if (ImGui::Button(warnings.c_str()))
+			m_showWarnings = !m_showWarnings;
 
-	ImGui::SameLine();
-	if (ImGui::Button(errors.c_str()))
-		m_showErrors = !m_showErrors;
-
-	ImGui::End();
+		ImGui::SameLine();
+		if (ImGui::Button(errors.c_str()))
+			m_showErrors = !m_showErrors;
+	}
+	//ImGui::End();
 }
 
 void Console::printMessage(std::string message)
@@ -73,6 +74,8 @@ void Console::printMessage(std::string message)
 
 	std::string cleanMessage = message.substr(1, message.size() - 1); //Removes the preceeding error value.
 	std::string author       = getAuthor(cleanMessage);
+	
+	cleanMessage = cleanMessage.substr(14, message.size() - 13);
 
 	if (author != m_previousAuthor)
 	{
@@ -81,7 +84,7 @@ void Console::printMessage(std::string message)
 	}
 
 	ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(mColor.r, mColor.g, mColor.b, 255));
-	ImGui::PushTextWrapPos(450);
+	ImGui::PushTextWrapPos(m_width);
 
 	ImGui::Text(cleanMessage.c_str());
 

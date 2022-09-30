@@ -62,9 +62,14 @@ void ImGuiWrapper::drawObjects()
 
 		newFrame();
 
+		ImGui::SetNextWindowPos(ImVec2(0, 0));
+		ImGui::SetNextWindowSize(ImVec2(300, 1080));
+		ImGui::Begin("Details");
+
 		for (int i = 0; i < m_objects.size(); i++)
 			m_objects[i]->draw();
 
+		ImGui::End();
 		render();
 	}
 	else

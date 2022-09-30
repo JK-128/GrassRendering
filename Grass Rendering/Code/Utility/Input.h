@@ -19,6 +19,7 @@ extern bool camLeft;
 extern bool camRight;
 extern bool camUp;
 extern bool camDown;
+extern bool locked;
 
 static std::map<std::string, int> stringToGlfwInput
 {
@@ -61,6 +62,20 @@ static void mouse_callback(GLFWwindow* window, double xPos, double yPos)
 	lastY = yPos;
 
 	moved = true;
+}
+
+static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	{
+		locked = true;
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	}
+	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE)
+	{
+		locked = false;
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	}
 }
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)

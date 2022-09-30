@@ -33,6 +33,11 @@ public:
 	glm::vec3 getPos();
 	glm::vec3 getCUp();
 
+	float getMoveSpeed();
+	float getLookSpeed();
+
+	void setMoveSpeed(float speed);
+	void setLookSpeed(float speed);
 	void update();
 	void updateVectors();
 	void move();

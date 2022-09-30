@@ -34,6 +34,26 @@ glm::vec3 Camera::getCUp()
 	return m_cUp;
 }
 
+float Camera::getMoveSpeed()
+{
+	return m_moveSpeed;
+}
+
+float Camera::getLookSpeed()
+{
+	return m_lookSpeed;
+}
+
+void Camera::setMoveSpeed(float speed)
+{
+	m_moveSpeed = speed;
+}
+
+void Camera::setLookSpeed(float speed)
+{
+	m_lookSpeed = speed;
+}
+
 void Camera::update()
 {
 	m_view = glm::lookAt(m_pos, m_pos + m_front, m_cUp);

@@ -1,5 +1,2 @@
-﻿  Grass.cpp
-C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Code\Objects\Grass.cpp(5,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Code\Objects\Grass.cpp(79,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Code\Objects\Grass.cpp(82,81): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+﻿  SkyBox.cpp
   Grass Rendering.vcxproj -> C:\Users\joe\Desktop\Works\Grass Rendering\x64\Debug\Grass Rendering.exe

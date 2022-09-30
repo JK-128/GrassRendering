@@ -13,5 +13,7 @@ public:
 	ImGuiBase();
 
 	virtual void draw();
+
+	void floatProp(std::string label, std::string name, float* value, float step, bool sameLine);
 };
 

@@ -5,12 +5,12 @@ SkyBox::SkyBox(std::string path, std::string type) : Object()
     delete m_shader;
     m_shader = new Shader("Content/Shaders/skyboxVert.glsl", "Content/Shaders/skyboxFrag.glsl");
 
-	m_elements = false;
-	m_normals  = false;
-    m_skybox   = true;
+    m_elements = false;
+    m_normals = false;
+    m_skybox = true;
 
-	m_vertices =
-	{
+    m_vertices =
+    {
         -1.0f,  1.0f, -1.0f,
         -1.0f, -1.0f, -1.0f,
          1.0f, -1.0f, -1.0f,
@@ -52,19 +52,19 @@ SkyBox::SkyBox(std::string path, std::string type) : Object()
          1.0f, -1.0f, -1.0f,
         -1.0f, -1.0f,  1.0f,
          1.0f, -1.0f,  1.0f
-	};
+    };
 
     m_triangleCount = 36;
-	setup(108, 0, 3);
+    setup(108, 0, 3);
 
     std::vector<std::string> paths =
     {
-        path + "/right"  + type,
-        path + "/left"   + type,
-        path + "/top"    + type,
+        path + "/right" + type,
+        path + "/left" + type,
+        path + "/top" + type,
         path + "/bottom" + type,
-        path + "/front"  + type,
-        path + "/back"   + type
+        path + "/front" + type,
+        path + "/back" + type
     };
 
     m_cubemap = new CubeMap(paths);
@@ -77,7 +77,7 @@ SkyBox::~SkyBox()
 
 void SkyBox::draw()
 {
-	glDepthMask(GL_FALSE);
+    glDepthMask(GL_FALSE);
 
     m_shader->bind();
 
@@ -87,6 +87,13 @@ void SkyBox::draw()
 
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
-	glDepthMask(GL_TRUE);
+    glDepthMask(GL_TRUE);
     glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+}
+
+void SkyBox::setTexture(CubeMap* cMap)
+{
+    delete m_cubemap;
+
+    m_cubemap = cMap;
 }

@@ -14,10 +14,10 @@ Grass::Grass() : Object()
 	m_vertices =
 	{
 		 0.00f,  0.10f, 1.0f,
-		 0.05f,  -0.05f, 0.01f,
+		 0.05f,  -0.05f, 0.8f,
 		 0.05f, -0.05f, 0.0f,
 		-0.05f, -0.05f, 0.0f,
-		-0.05f,  -0.05f, 0.01f
+		-0.05f,  -0.05f, 0.8f
 	};
 
 	m_indices =
@@ -45,7 +45,7 @@ Grass::Grass() : Object()
 		}
 	}
 
-	logMessage("Number of positions: " + std::to_string(m_positions.size()), "GRSS");
+	logMessage("No. blades: " + std::to_string(m_positions.size()), "GRSS");
 
 	setup(15, 9, 3);
 
@@ -81,4 +81,9 @@ void Grass::draw()
 	glBindVertexArray(m_VAO);
 	glDrawElementsInstanced(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0, m_positions.size());
 	glBindVertexArray(0);
+}
+
+Shader* Grass::getShader()
+{
+	return m_shader;
 }

@@ -12,5 +12,6 @@ public:
 	~SkyBox();
 
 	void draw();
+	void setTexture(CubeMap* cMap);
 };
 

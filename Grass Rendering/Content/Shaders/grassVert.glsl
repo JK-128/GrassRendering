@@ -7,6 +7,14 @@ uniform mat4 model;
 uniform mat4 view;
 
 uniform float time;
+uniform float noiseX;
+uniform float noiseZ;
+uniform float noiseS;
+uniform float wSpeed;
+uniform float strength;
+uniform float grassHeight;
+uniform float brightness;
+uniform float contrast;
 
 vec4 mod289(vec4 x)
 {
@@ -72,19 +80,14 @@ out float height;
 void main()
 {
 	vec3 groundOffset = vec3(offset.x, 0.0, offset.z);
-
-	vec2 noiseVec = vec2(groundOffset.x * 0.05, groundOffset.z * 0.5);
+	vec2 noiseVec     = vec2(groundOffset.x * noiseX, groundOffset.z * noiseZ);
 
 	float noiseVal = cnoise(noiseVec);
 
-	height = noiseVal + 0.3;
+	groundOffset.x += position.z * (sin(time * (position.z + (wSpeed * noiseVal))) * strength);
+	groundOffset.y += position.z * (offset.y * grassHeight + (noiseVal * noiseS));
 
-	if(position.z > 0.0)
-	{
-		groundOffset.x += sin(time * (position.z + (0.3 * noiseVal))) * 0.3;
-
-		groundOffset.y += offset.y * 0.6 + (noiseVal * 0.3);
-	}
+	height = noiseVal + brightness + (groundOffset.y * contrast);
 
 	vec3 realPos = vec3(position.x, position.y, 0.0);
 	

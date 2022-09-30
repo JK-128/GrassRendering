@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Code\Interface\CamControls.cpp" />
     <ClCompile Include="Code\Graphics\Camera.cpp" />
     <ClCompile Include="Code\Utility\Input.cpp" />
     <ClCompile Include="Code\Source.cpp" />
@@ -155,8 +156,11 @@
     <ClCompile Include="Code\Graphics\Texture.cpp" />
     <ClCompile Include="Dependencies\stb_image.cpp" />
     <ClCompile Include="Code\Objects\Grass.cpp" />
+    <ClCompile Include="Code\Interface\GrassDetails.cpp" />
+    <ClCompile Include="Code\Interface\SkyboxPicker.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Code\Interface\CamControls.h" />
     <ClInclude Include="Code\Graphics\Camera.h" />
     <ClInclude Include="Code\Graphics\Window.h" />
     <ClInclude Include="Code\Utility\DeltaTime.h" />
@@ -173,6 +177,8 @@
     <ClInclude Include="Code\Graphics\Texture.h" />
     <ClInclude Include="Code\Graphics\CubeMap.h" />
     <ClInclude Include="Code\Objects\Grass.h" />
+    <ClInclude Include="Code\Interface\GrassDetails.h" />
+    <ClInclude Include="Code\Interface\SkyboxPicker.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Shaders\grassFrag.glsl" />
