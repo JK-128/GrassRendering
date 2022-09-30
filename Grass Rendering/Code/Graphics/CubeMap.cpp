@@ -1,15 +1,15 @@
 #include "CubeMap.h"
 
-CubeMap::CubeMap(std::vector<std::string> paths)
+CubeMap::CubeMap(std::vector<std::string>* paths)
 {
 	stbi_set_flip_vertically_on_load(false);
 
 	glGenTextures(1, &m_texture);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_texture);
 
-	for (int i = 0; i < paths.size(); i++)
+	for (int i = 0; i < (*paths).size(); i++)
 	{
-		unsigned char* data = stbi_load(paths[i].c_str(), &m_width, &m_height, &m_channels, 0);
+		unsigned char* data = stbi_load((*paths).at(i).c_str(), &m_width, &m_height, &m_channels, 0);
 		
 		if(data)
 		{
@@ -25,7 +25,7 @@ CubeMap::CubeMap(std::vector<std::string> paths)
 		}
 		else
 		{
-			logMessage("Path not found: " + paths[i], "CTXT", 1);
+			logMessage("Path not found: " + (*paths).at(i), "CTXT", 1);
 			stbi_image_free(data);
 		}
 	}
@@ -45,4 +45,9 @@ void CubeMap::bind()
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_texture);
+}
+
+CubeMap::~CubeMap()
+{
+	glDeleteTextures(1, &m_texture);
 }

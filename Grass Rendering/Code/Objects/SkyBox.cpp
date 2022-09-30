@@ -67,7 +67,7 @@ SkyBox::SkyBox(std::string path, std::string type) : Object()
         path + "/back" + type
     };
 
-    m_cubemap = new CubeMap(paths);
+    m_cubemap = new CubeMap(&paths);
 }
 
 SkyBox::~SkyBox()

@@ -47,8 +47,6 @@ int WinMain()
 		gDet.attachGrass(&grass);
 		grass.setScale(0.05f, 0.3f, 1.0f);
 
-		//grass.setPosition(3.0f, 0.0f, 1.0f);
-
 		Camera camera;
 		cCtrls.attachCamera(&camera);
 

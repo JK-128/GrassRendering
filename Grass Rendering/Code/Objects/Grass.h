@@ -22,6 +22,7 @@ public:
 	void draw();
 	void setPositions();
 	void updateCount(int count);
+	void setColor(float r, float g, float b, float a);
 
 	Shader* getShader();
 };

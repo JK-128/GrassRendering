@@ -33,7 +33,7 @@ void SkyboxPicker::updateCubeMap()
 		m_paths[m_selection] + "/back"   + m_types[m_selection]
 	};
 
-	CubeMap* cMap = new CubeMap(paths);
+	CubeMap* cMap = new CubeMap(&paths);
 
 	m_skybox->setTexture(cMap);
 }

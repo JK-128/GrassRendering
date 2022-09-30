@@ -18,7 +18,8 @@ private:
 	float m_height     = 0.6f;
 	float m_brightness = 0.3f;
 	float m_contrast   = 2.0f;
-	
+	float m_noiseC     = 0.0f;
+
 	int m_count = 50;
 
 	bool m_hasGrass = false;

@@ -11,7 +11,8 @@ private:
 	unsigned int m_texture;
 
 public:
-	CubeMap(std::vector<std::string> paths);
+	CubeMap(std::vector<std::string>* paths);
+	~CubeMap();
 
 	unsigned int get();
 

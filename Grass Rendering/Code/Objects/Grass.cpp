@@ -11,6 +11,7 @@ Grass::Grass() : Object()
 	m_normals = false;
 	m_texCoords = false;
 
+	/*
 	m_vertices =
 	{
 		 0.00f,  0.10f, 1.0f,
@@ -26,12 +27,26 @@ Grass::Grass() : Object()
 		1, 2, 4,
 		2, 3, 4
 	};
+	*/
+	m_vertices =
+	{
+		 0.00f, 1.00f, 0.00f, //0
+		 0.50f, 0.00f, 0.00f, //1
+		 0.00f, 0.00f, 0.05f, //2
+		-0.50f, 0.00f, 0.00f, //3
+	};
+
+	m_indices =
+	{
+		0, 1, 2,
+		0, 2, 3
+	};
 
 	setPositions();
 
 	logMessage("No. blades: " + std::to_string(m_positions.size()), "GRSS");
 
-	setup(15, 9, 3);
+	setup(12, 6, 3);
 
 	setupExtra();
 
@@ -113,4 +128,9 @@ void Grass::setPositions()
 			m_positions.push_back(newPos);
 		}
 	}
+}
+
+void Grass::setColor(float r, float g, float b, float a)
+{
+	m_ground.setColor(r, g, b, a);
 }

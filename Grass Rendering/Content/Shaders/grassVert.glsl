@@ -14,6 +14,7 @@ uniform float time;
 uniform float noiseX;
 uniform float noiseZ;
 uniform float noiseS;
+uniform float noiseC;
 uniform float wSpeed;
 uniform float strength;
 uniform float grassHeight;
@@ -88,12 +89,14 @@ void main()
 
 	float noiseVal = cnoise(noiseVec);
 
-	groundOffset.x += position.z * (sin(time * (position.z + (wSpeed * noiseVal))) * strength);
-	groundOffset.y += position.z * (offset.y * grassHeight + (noiseVal * noiseS));
+	groundOffset.x += position.y * (sin(time * (position.y + (wSpeed * noiseVal))) * strength);
+	groundOffset.z += position.y * (cos(time * (position.y + (wSpeed * noiseVal))) * (strength / 50.0));
+	groundOffset.y += position.y * (offset.y * grassHeight + (noiseVal * noiseS));
 
 	height = noiseVal + brightness + (groundOffset.y * contrast);
+	height = ((1.0 - height) * noiseC) + height;
 
-	vec3 realPos = vec3(position.x, position.y, 0.0);
-	
+	vec3 realPos = vec3(position.x, position.y, position.z);
+
 	gl_Position = projection * view * model * vec4(realPos + groundOffset, 1.0);
 }
