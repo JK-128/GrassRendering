@@ -8,11 +8,11 @@ void GrassDetails::draw()
 		return;
 	}
 
-	if (ImGui::CollapsingHeader("Grass Details"))
+	if (ImGui::CollapsingHeader("Tweak Grass"))
 	{
 		ImGui::Indent(10.0f);
 
-		if (ImGui::CollapsingHeader("Colors"))
+		if (ImGui::CollapsingHeader("Base Colors"))
 		{
 			ImGui::ColorPicker3("Tip Color:", m_tipColor);
 			ImGui::ColorPicker3("Base Color:", m_baseColor);
@@ -25,20 +25,20 @@ void GrassDetails::draw()
 		}
 		if (ImGui::CollapsingHeader("Noise"))
 		{
-			floatProp("Noise X:", "nx", &m_noiseX, 0.01f, false);
-			floatProp("Noise Z:", "nz", &m_noiseZ, 0.01f, false);
-			floatProp("Strength:", "ns", &m_noiseS, 0.01f, false);
+			floatProp("Scale X:", "nx", &m_noiseX, 0.01f, false);
+			floatProp("Scale Z:", "nz", &m_noiseZ, 0.01f, false);
+			floatProp("Height Strength:", "ns", &m_noiseS, 0.01f, false);
 			floatProp("Color Strength:", "ncs", &m_noiseC, 0.01f, false);
 
 			ImGui::NewLine();
 		}
 		if (ImGui::CollapsingHeader("Wind"))
 		{
-			floatProp("Wind speed:", "ws", &m_windSpeed, 0.05f, false);
+			floatProp("Scale:", "ws", &m_windSpeed, 0.05f, false);
 			floatProp("Strength:", "s", &m_strength, 0.01f, false);
 			ImGui::NewLine();
 		}
-		if (ImGui::CollapsingHeader("Grass"))
+		if (ImGui::CollapsingHeader("Amount"))
 		{
 			ImGui::Text("Count:");
 			ImGui::InputInt("count", &m_count, 50);
@@ -51,6 +51,10 @@ void GrassDetails::draw()
 			m_count = std::max(50, m_count);
 
 			floatProp("Height:", "h", &m_height, 0.05f, false);
+
+			ImGui::Text("Grid Aligned:");
+			ImGui::Checkbox("##ga", &m_gridAligned);
+
 			ImGui::NewLine();
 		}
 		ImGui::Indent(-10.0f);
@@ -59,6 +63,7 @@ void GrassDetails::draw()
 	Shader* shader = m_grass->getShader();
 
 	m_grass->setColor(m_baseColor[0], m_baseColor[1], m_baseColor[2], 1.0);
+	m_grass->setGridAligned(m_gridAligned);
 
 	shader->bind();
 	shader->setV3("tipColor", glm::vec3(m_tipColor[0], m_tipColor[1], m_tipColor[2]));
@@ -72,7 +77,6 @@ void GrassDetails::draw()
 	shader->setF("brightness", m_brightness);
 	shader->setF("contrast", m_contrast);
 	shader->setF("noiseC", m_noiseC);
-
 }
 
 void GrassDetails::attachGrass(Grass* grass)

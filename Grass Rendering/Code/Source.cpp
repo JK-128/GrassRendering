@@ -90,6 +90,7 @@ int WinMain()
 /*
 TO DO:
 ------
++ Get grass moving with the plane.
 + See how the program then handles multiple grass objects.
 	+ If good then proceed as is.
 	+ If bad, then the planes will be a vector for the grass as a whole

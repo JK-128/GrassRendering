@@ -7,8 +7,8 @@ class GrassDetails : public ImGuiBase
 private:
 	Grass* m_grass;
 
-	float m_tipColor[3] = {0.4, 0.7, 0.22};
-	float m_baseColor[3] = {0.2, 0.35, 0.11};
+	float m_tipColor[3] = {0.4f, 0.7f, 0.22f};
+	float m_baseColor[3] = {0.2f, 0.35f, 0.11f};
 
 	float m_noiseX     = 0.05f;
 	float m_noiseZ     = 0.5f;
@@ -23,6 +23,7 @@ private:
 	int m_count = 50;
 
 	bool m_hasGrass = false;
+	bool m_gridAligned = true;
 
 public:
 

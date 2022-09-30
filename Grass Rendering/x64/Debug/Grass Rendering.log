@@ -1,8 +1,4 @@
 ﻿  GrassDetails.cpp
-C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Code\Interface\GrassDetails.h(10,40): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Code\Interface\GrassDetails.h(11,42): warning C4305: 'initializing': truncation from 'double' to 'float'
   Source.cpp
-C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Code\Interface\GrassDetails.h(10,40): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\joe\Desktop\Works\Grass Rendering\Grass Rendering\Code\Interface\GrassDetails.h(11,42): warning C4305: 'initializing': truncation from 'double' to 'float'
   Generating Code...
   Grass Rendering.vcxproj -> C:\Users\joe\Desktop\Works\Grass Rendering\x64\Debug\Grass Rendering.exe

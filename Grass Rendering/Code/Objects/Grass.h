@@ -15,6 +15,8 @@ private:
 	int m_count   = 50;
 	int m_density = 1;
 
+	bool m_gridAligned = true;
+
 public:
 	Grass();
 
@@ -23,6 +25,7 @@ public:
 	void setPositions();
 	void updateCount(int count);
 	void setColor(float r, float g, float b, float a);
+	void setGridAligned(bool status);
 
 	Shader* getShader();
 };

@@ -121,8 +121,12 @@ void Grass::setPositions()
 
 			glm::vec3 newPos = gPos + glm::vec3(i * density, 0.0f, j * (density * 0.05));
 			
-			newPos.x += randomOffsetX;
-			newPos.z += randomOffsetZ;
+			if (!m_gridAligned)
+			{
+				newPos.x += randomOffsetX;
+				newPos.z += randomOffsetZ;
+			}
+
 			newPos.y  = randomOffsetY;
 
 			m_positions.push_back(newPos);
@@ -133,4 +137,9 @@ void Grass::setPositions()
 void Grass::setColor(float r, float g, float b, float a)
 {
 	m_ground.setColor(r, g, b, a);
+}
+
+void Grass::setGridAligned(bool status)
+{
+	m_gridAligned = status;
 }
