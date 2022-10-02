@@ -2,10 +2,10 @@
 
 Camera::Camera()
 {
-	m_pos    = glm::vec3(0.0f, 0.0f,  3.0f);
-	m_front  = glm::vec3(0.0f, 0.0f, -1.0f);
-	m_cUp    = glm::vec3(0.0f, 1.0f,  0.0f);
-	m_target = glm::vec3(0.0f, 0.0f,  0.0f);
+	m_pos    = glm::vec3(0.0, 0.0,  3.0);
+	m_front  = glm::vec3(0.0, 0.0, -1.0);
+	m_cUp    = glm::vec3(0.0, 1.0,  0.0);
+	m_target = glm::vec3(0.0, 0.0,  0.0);
 
 	m_dir   = glm::normalize(m_pos - m_target);
 	m_right = glm::normalize(glm::cross(m_cUp, m_dir));
@@ -34,24 +34,24 @@ glm::vec3 Camera::getCUp()
 	return m_cUp;
 }
 
-float Camera::getMoveSpeed()
+double Camera::getMoveSpeed()
 {
 	return m_moveSpeed;
 }
 
-float Camera::getLookSpeed()
+double Camera::getLookSpeed()
 {
 	return m_lookSpeed;
 }
 
 void Camera::setMoveSpeed(float speed)
 {
-	m_moveSpeed = speed;
+	m_moveSpeed = (double)speed;
 }
 
 void Camera::setLookSpeed(float speed)
 {
-	m_lookSpeed = speed;
+	m_lookSpeed = (double)speed;
 }
 
 void Camera::update()
@@ -61,7 +61,7 @@ void Camera::update()
 
 void Camera::updateVectors()
 {
-	glm::vec3 front = glm::vec3(0.0f);
+	glm::vec3 front = glm::vec3(0.0);
 
 	front.x = cos(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
 	front.y = sin(glm::radians(m_pitch));
@@ -76,7 +76,7 @@ void Camera::updateVectors()
 
 void Camera::move()
 {
-	float velocity = m_moveSpeed * (float)deltaTime;
+	double velocity = m_moveSpeed * deltaTime;
 
 	if      (camForward)  m_pos += m_front * velocity;
 	else if (camBackward) m_pos -= m_front * velocity;
@@ -94,14 +94,14 @@ void Camera::look()
 	{
 		moved = false;
 
-		m_yaw += (float)xOffset * m_lookSpeed * (float)deltaTime;
-		m_pitch += (float)yOffset * m_lookSpeed * (float)deltaTime;
+		m_yaw   += xOffset * m_lookSpeed * deltaTime;
+		m_pitch += yOffset * m_lookSpeed * deltaTime;
 
-		if (m_pitch > 89.0f) m_pitch = 89.0f;
-		if (m_pitch < -89.0f) m_pitch = -89.0f;
+		if (m_pitch >  89.0) m_pitch =  89.0;
+		if (m_pitch < -89.0) m_pitch = -89.0;
 
-		if (m_yaw > 360.0f) m_yaw -= 360.0f;
-		if (m_yaw < -360.0f) m_yaw += 360.0f;
+		if (m_yaw >  360.0) m_yaw -= 360.0;
+		if (m_yaw < -360.0) m_yaw += 360.0;
 
 		updateVectors();
 	}

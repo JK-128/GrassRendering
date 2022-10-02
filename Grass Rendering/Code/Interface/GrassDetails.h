@@ -6,6 +6,7 @@ class GrassDetails : public ImGuiBase
 {
 private:
 	Grass* m_grass;
+	//std::vector<Grass*> m_grasses;
 
 	float m_tipColor[3] = {0.4f, 0.7f, 0.22f};
 	float m_baseColor[3] = {0.2f, 0.35f, 0.11f};
@@ -13,12 +14,13 @@ private:
 	float m_noiseX     = 0.05f;
 	float m_noiseZ     = 0.5f;
 	float m_noiseS     = 0.3f;
-	float m_windSpeed  = 0.3f;
+	float m_windScale  = 0.3f;
 	float m_strength   = 0.3f;
 	float m_height     = 0.6f;
 	float m_brightness = 0.3f;
 	float m_contrast   = 2.0f;
 	float m_noiseC     = 0.0f;
+	float m_windSpeed  = 1.0f;
 
 	int m_count = 50;
 
@@ -26,6 +28,7 @@ private:
 	bool m_gridAligned = true;
 
 public:
+	~GrassDetails();
 
 	void draw();
 	void attachGrass(Grass* grass);

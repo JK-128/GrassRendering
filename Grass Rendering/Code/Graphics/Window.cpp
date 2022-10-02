@@ -65,7 +65,7 @@ void Window::create(bool initGlad)
 	glfwSetKeyCallback(mp_window, key_callback);
 	glfwSetMouseButtonCallback(mp_window, mouse_button_callback);
 
-	glfwSwapInterval(0);
+	glfwSwapInterval(1);
 
 	if (initGlad)
 	{

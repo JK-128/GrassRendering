@@ -9,20 +9,20 @@
 class Camera
 {
 private:
-	glm::vec3 m_pos;
-	glm::vec3 m_front;
-	glm::vec3 m_target;
-	glm::vec3 m_dir;
-	glm::vec3 m_cUp;
-	glm::vec3 m_wUp;
-	glm::vec3 m_right;
+	glm::dvec3 m_pos;
+	glm::dvec3 m_front;
+	glm::dvec3 m_target;
+	glm::dvec3 m_dir;
+	glm::dvec3 m_cUp;
+	glm::dvec3 m_wUp;
+	glm::dvec3 m_right;
 
 	glm::mat4 m_view;
 
-	float m_moveSpeed =  2.5f;
-	float m_lookSpeed =  100.0f;
-	float m_yaw       = -90.0f;
-	float m_pitch     =   0.0f;
+	double m_moveSpeed =   2.5;
+	double m_lookSpeed =   5.0;
+	double m_yaw       = -90.0;
+	double m_pitch     =   0.0;
 
 public:
 	Camera();
@@ -33,8 +33,8 @@ public:
 	glm::vec3 getPos();
 	glm::vec3 getCUp();
 
-	float getMoveSpeed();
-	float getLookSpeed();
+	double getMoveSpeed();
+	double getLookSpeed();
 
 	void setMoveSpeed(float speed);
 	void setLookSpeed(float speed);

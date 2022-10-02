@@ -15,11 +15,12 @@ uniform float noiseX;
 uniform float noiseZ;
 uniform float noiseS;
 uniform float noiseC;
-uniform float wSpeed;
+uniform float wScale;
 uniform float strength;
 uniform float grassHeight;
 uniform float brightness;
 uniform float contrast;
+uniform float windSpeed;
 
 vec4 mod289(vec4 x)
 {
@@ -80,6 +81,34 @@ float cnoise(vec2 P)
   return 2.3 * n_xy;
 }
 
+vec2 random2(vec2 p)
+{
+	return fract(sin(vec2(
+	dot(p, vec2(127.32, 231.4)),
+	dot(p, vec2(12.3, 146.3))))* 231.23);
+}
+
+float worleyNoise(vec2 p)
+{
+	float dist = 1.0;
+
+	vec2 i_p = floor(p);
+	vec2 f_p = fract(p);
+
+	for(int y = -1; y <= 1; y++)
+	{
+		for(int x = -1; x <= 1; x++)
+		{
+			vec2 n = vec2(float(x), float(y));
+			vec2 d = n + random2(i_p + n) - f_p;
+
+			dist = min(dist, length(d));
+		}
+	}
+
+	return dist;
+}
+
 out float height;
 
 void main()
@@ -89,12 +118,19 @@ void main()
 
 	float noiseVal = cnoise(noiseVec);
 
-	groundOffset.x += position.y * (sin(time * (position.y + (wSpeed * noiseVal))) * strength);
-	groundOffset.z += position.y * (cos(time * (position.y + (wSpeed * noiseVal))) * (strength / 50.0));
+	//groundOffset.x += position.y * (sin(time * (position.y + (wSpeed * noiseVal))) * strength);
+	//groundOffset.z += position.y * (cos(time * (position.y + (wSpeed * noiseVal))) * (strength / 50.0));
 	groundOffset.y += position.y * (offset.y * grassHeight + (noiseVal * noiseS));
 
 	height = noiseVal + brightness + (groundOffset.y * contrast);
 	height = ((1.0 - height) * noiseC) + height;
+
+	vec2 worleyVec = vec2(groundOffset.x, groundOffset.z) + (time * vec2(windSpeed, 0.0));
+
+	float wNoise = worleyNoise(worleyVec);
+
+	groundOffset.x += position.y * wNoise * strength;
+	groundOffset.z += position.y * wNoise * strength;
 
 	vec3 realPos = vec3(position.x, position.y, position.z);
 

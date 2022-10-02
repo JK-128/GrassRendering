@@ -43,9 +43,21 @@ int WinMain()
 		SkyBox skybox("Content/Textures/interstellar_skybox", ".png");
 		spbr.attachSkyBox(&skybox);
 
+		/*
+		int grassCount = 5;
+		for (int i = 0; i < grassCount; i++)
+		{
+			for (int j = 0; j < grassCount; j++)
+			{
+				Grass* grass = new Grass;
+
+				grass->setPosition((float)i, (float)j, 0.0f);
+
+				gDet.attachGrass(grass);
+			}
+		}*/
 		Grass grass;
 		gDet.attachGrass(&grass);
-		grass.setScale(0.05f, 0.3f, 1.0f);
 
 		Camera camera;
 		cCtrls.attachCamera(&camera);
@@ -72,6 +84,8 @@ int WinMain()
 			skybox.updateView(skyBoxView);
 			skybox.draw();
 
+			grass.updatePositions(camera.getPos());
+
 			imgui->drawObjects();
 
 			window.swap();
@@ -88,6 +102,12 @@ int WinMain()
 
 
 /*
+* Perhaps set an fps limit of 120 (implement the deltatime accumulator thingy).
+* This gives a tangable performance target that is definitely high enough for most.
+* 
+* From BOTW - Culling (with camera distance) uses randomness/noise to avoid obvious hard cut.
+* 
+* Use worley noise for wind.
 TO DO:
 ------
 + Get grass moving with the plane.
