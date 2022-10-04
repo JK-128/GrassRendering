@@ -11,36 +11,58 @@ Grass::Grass() : Object()
 	m_normals = false;
 	m_texCoords = false;
 
-	/*
-	m_vertices =
+	
+	std::vector<float> vertices1 =
 	{
-		 0.00f,  0.10f, 1.0f,
-		 0.05f,  -0.05f, 0.8f,
-		 0.05f, -0.05f, 0.0f,
-		-0.05f, -0.05f, 0.0f,
-		-0.05f,  -0.05f, 0.8f
+		 0.000f, 0.50f, 0.000f,
+		 0.025f, 0.00f, 0.000f,
+		 0.000f, 0.00f, 0.025f,
+		-0.025f, 0.00f, 0.000f,
 	};
 
-	m_indices =
+	std::vector<int> indices1 =
+	{
+		0, 1, 2,
+		0, 2, 3
+	};
+
+	std::vector<float> vertices2 =
+	{
+		 0.00f, 0.50f, 0.00f,
+		 0.025f, 0.25f, 0.025f,
+		 0.00f, 0.00f, 0.00f,
+		-0.025f, 0.25f, 0.025f
+	};
+
+	std::vector<int> indices2 =
+	{
+		0, 1, 2,
+		0, 2, 3
+	};
+
+	std::vector<float> vertices3 =
+	{
+		 0.000f, 0.5f, 0.0f,
+		 0.025f, 0.4f, 0.0f,
+		 0.025f, 0.0f, 0.0f,
+		-0.025f, 0.0f, 0.0f,
+		-0.025f, 0.4f, 0.0f
+	};
+
+	std::vector<int> indices3 =
 	{
 		0, 1, 4,
 		1, 2, 4,
 		2, 3, 4
 	};
-	*/
-	m_vertices =
-	{
-		 0.000f, 0.50f, 0.000f, //0
-		 0.025f, 0.00f, 0.000f, //1
-		 0.000f, 0.00f, 0.025f, //2
-		-0.025f, 0.00f, 0.000f, //3
-	};
 
-	m_indices =
-	{
-		0, 1, 2,
-		0, 2, 3
-	};
+	m_shapes.push_back(vertices1);
+	m_shapes.push_back(vertices2);
+	m_shapes.push_back(vertices3);
+
+	m_tris.push_back(indices1);
+	m_tris.push_back(indices2);
+	m_tris.push_back(indices3);
 
 	m_ground.scale(2.0f, 1.0f, 2.0f);
 	m_ground.rotate('x', 90.0f);
@@ -50,8 +72,8 @@ Grass::Grass() : Object()
 	setPositions();
 
 	glGenBuffers(1, &m_posVBO);
-
-	setup(12, 6, 3);
+	
+	updateShape(0);
 
 	updatePositions(glm::vec3(0.0f));
 	setupExtra();
@@ -65,6 +87,20 @@ void Grass::updateCount(int count)
 	updatePositions(glm::vec3(0.0f), true);
 
 	m_previousPos = glm::vec3(0.0f);
+}
+
+void Grass::updateShape(int selection)
+{
+	if (selection < 0 || selection > m_shapes.size() - 1)
+		return;
+
+	m_vertices.clear();
+	m_vertices = m_shapes[selection];
+
+	m_indices.clear();
+	m_indices = m_tris[selection];
+
+	setup(m_vertices.size(), m_indices.size(), 3);
 }
 
 void Grass::setupExtra()
@@ -201,4 +237,9 @@ bool Grass::isInRange(glm::vec3 v1, glm::vec3 v2)
 		return true;
 
 	return false;
+}
+
+int Grass::getShapesCount()
+{
+	return m_shapes.size();
 }

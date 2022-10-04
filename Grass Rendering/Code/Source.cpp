@@ -23,7 +23,7 @@ int WinMain()
 
 	logMessage("Program Started.", "MAIN");
 
-	Window window(1920, 1080, "Test Window", true, true);
+	Window window(1920, 1080, "Grass Renderer", true, true);
 
 	if (window.isCreated())
 	{
@@ -108,6 +108,10 @@ int WinMain()
 * From BOTW - Culling (with camera distance) uses randomness/noise to avoid obvious hard cut.
 * 
 * Use worley noise for wind.
+* 
+* Implement simple shading to allow for specular hightlights with wind.  
+* 
+* barycentric coords
 TO DO:
 ------
 + Get grass moving with the plane.

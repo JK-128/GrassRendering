@@ -127,7 +127,7 @@ void main()
 
 	vec2 worleyVec = vec2(groundOffset.x, groundOffset.z) + (time * vec2(windSpeed, 0.0));
 
-	float wNoise = worleyNoise(worleyVec);
+	float wNoise = worleyNoise(worleyVec * wScale);
 
 	groundOffset.x += position.y * wNoise * strength;
 	groundOffset.z += position.y * wNoise * strength;

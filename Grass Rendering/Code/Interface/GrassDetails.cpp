@@ -40,23 +40,46 @@ void GrassDetails::draw()
 
 			ImGui::NewLine();
 		}
-		if (ImGui::CollapsingHeader("Amount"))
+		if (ImGui::CollapsingHeader("Models"))
 		{
-			ImGui::Text("Count:");
-			ImGui::InputInt("count", &m_count, 50);
+			int currentShape = m_shape;
 
-			if (ImGui::Button("Update"))
-			{
-				//for(int i = 0; i < m_grasses.size(); i++)
+			ImGui::Text("Grass Shape:");
+			ImGui::InputInt("##shape", &m_shape, 1);
+
+			if (m_shape < 0) 
+				m_shape = m_grass->getShapesCount() - 1;
+			if (m_shape > (m_grass->getShapesCount() - 1))
+				m_shape = 0;
+
+			if (currentShape != m_shape)
+				m_grass->updateShape(m_shape);
+
+			int currentCount = m_count;
+
+			ImGui::Text("Count:");
+			ImGui::InputInt("##count", &m_count, 50);
+
+			if (m_count < 0)
+				m_count = 0;
+
+			if(currentCount != m_count)
 					m_grass->updateCount(m_count);
-			}
 
 			m_count = std::max(50, m_count);
 
 			floatProp("Height:", "h", &m_height, 0.05f, false);
 
+			bool currentAlignment = m_gridAligned;
+			
 			ImGui::Text("Grid Aligned:");
 			ImGui::Checkbox("##ga", &m_gridAligned);
+			
+			if (currentAlignment != m_gridAligned)
+			{
+				m_grass->setGridAligned(m_gridAligned);
+				m_grass->updateCount(m_count);
+			}
 
 			ImGui::NewLine();
 		}
@@ -68,7 +91,6 @@ void GrassDetails::draw()
 		Shader* shader = m_grass->getShader();
 
 		m_grass->setColor(m_baseColor[0], m_baseColor[1], m_baseColor[2], 1.0);
-		m_grass->setGridAligned(m_gridAligned);
 
 		shader->bind();
 		shader->setV3("tipColor", glm::vec3(m_tipColor[0], m_tipColor[1], m_tipColor[2]));

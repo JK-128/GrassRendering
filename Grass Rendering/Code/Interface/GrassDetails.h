@@ -23,6 +23,7 @@ private:
 	float m_windSpeed  = 1.0f;
 
 	int m_count = 50;
+	int m_shape = 0;
 
 	bool m_hasGrass = false;
 	bool m_gridAligned = true;
