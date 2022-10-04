@@ -43,24 +43,23 @@ int WinMain()
 		SkyBox skybox("Content/Textures/interstellar_skybox", ".png");
 		spbr.attachSkyBox(&skybox);
 
-		/*
-		int grassCount = 5;
-		for (int i = 0; i < grassCount; i++)
-		{
-			for (int j = 0; j < grassCount; j++)
-			{
-				Grass* grass = new Grass;
-
-				grass->setPosition((float)i, (float)j, 0.0f);
-
-				gDet.attachGrass(grass);
-			}
-		}*/
 		Grass grass;
 		gDet.attachGrass(&grass);
 
 		Camera camera;
 		cCtrls.attachCamera(&camera);
+
+		//Quad q1;
+		//Quad q2;
+		//Quad q3;
+		//
+		//q1.setPosition(0.0f, 0.0f, 0.0f);
+		//q2.setPosition(0.0f, 0.0f, 0.5f);
+		//q3.setPosition(0.0f, 0.0f, 1.0f);
+		//
+		//q1.setColor(1.0f, 0.0f, 0.0f, 1.0f);
+		//q2.setColor(0.0f, 1.0f, 0.0f, 1.0f);
+		//q3.setColor(0.0f, 0.0f, 1.0f, 1.0f);
 
 		while (!window.isClosing())
 		{

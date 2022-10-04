@@ -83,6 +83,13 @@ void GrassDetails::draw()
 
 			ImGui::NewLine();
 		}
+		if (ImGui::CollapsingHeader("Interaction"))
+		{
+			floatProp("Position Z:", "pz", &m_interTargetZ, 0.05f, false);
+			floatProp("Radius:", "itr", &m_interRadius, 0.05f, false);
+			floatProp("Bottom Radius::", "itbr", &m_interBRadius, 0.05f, false);
+			floatProp("Strength:", "its", &m_interStrength, 0.05f, false);
+		}
 		ImGui::Indent(-10.0f);
 	}
 
@@ -105,6 +112,11 @@ void GrassDetails::draw()
 		shader->setF("contrast", m_contrast);
 		shader->setF("noiseC", m_noiseC);
 		shader->setF("windSpeed", m_windSpeed);
+
+		shader->setF("interStrength", m_interStrength);
+		shader->setF("interRadius", m_interRadius);
+		shader->setF("interBRadius", m_interBRadius);
+		shader->setV3("interTarget", glm::vec3(0.0f, 0.0f, m_interTargetZ));
 	//}
 }
 

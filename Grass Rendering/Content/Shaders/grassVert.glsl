@@ -111,6 +111,12 @@ float worleyNoise(vec2 p)
 
 out float height;
 
+//Testing out adding interactivity.
+uniform vec3  interTarget = vec3(0.0);
+uniform float interStrength = 0.5;
+uniform float interRadius = 1.0;
+uniform float interBRadius = 1.0;
+
 void main()
 {
 	vec3 groundOffset = vec3(offset.x, 0.0, offset.z);
@@ -118,8 +124,6 @@ void main()
 
 	float noiseVal = cnoise(noiseVec);
 
-	//groundOffset.x += position.y * (sin(time * (position.y + (wSpeed * noiseVal))) * strength);
-	//groundOffset.z += position.y * (cos(time * (position.y + (wSpeed * noiseVal))) * (strength / 50.0));
 	groundOffset.y += position.y * (offset.y * grassHeight + (noiseVal * noiseS));
 
 	height = noiseVal + brightness + (groundOffset.y * contrast);
@@ -129,10 +133,28 @@ void main()
 
 	float wNoise = worleyNoise(worleyVec * wScale);
 
+	//vec3 realPos = vec3(position.x, position.y, position.z);
+
+	//Interactivity stuff.
+	mat4 worldMat = model;
+
+	vec3 worldSpace = (worldMat * vec4(groundOffset, 1.0)).xyz;
+	vec3 direction = worldSpace - interTarget;
+	
+	direction.y = 0.0;
+	direction = normalize(direction);
+
+	float dist  = distance(interTarget, worldSpace);
+	float power = smoothstep(interRadius, 0.0, dist);
+	
+	direction = (vec4(direction, 1.0) * worldMat).xyz;
+	direction = normalize(direction);
+
+	vec3 realPos = position + (direction * power * interStrength * (interBRadius + position.y));
+
 	groundOffset.x += position.y * wNoise * strength;
 	groundOffset.z += position.y * wNoise * strength;
-
-	vec3 realPos = vec3(position.x, position.y, position.z);
+	
 
 	gl_Position = projection * view * model * vec4(realPos + groundOffset, 1.0);
 }

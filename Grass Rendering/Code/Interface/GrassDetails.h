@@ -22,6 +22,11 @@ private:
 	float m_noiseC     = 0.0f;
 	float m_windSpeed  = 1.0f;
 
+	float m_interStrength = 0.5f;
+	float m_interRadius   = 1.0f;
+	float m_interTargetZ  = 0.0f;
+	float m_interBRadius  = 0.1f;
+
 	int m_count = 50;
 	int m_shape = 0;
 
