@@ -112,10 +112,30 @@ float worleyNoise(vec2 p)
 out float height;
 
 //Testing out adding interactivity.
-uniform vec3  interTarget = vec3(0.0);
+uniform vec3  interTarget   = vec3(0.0);
+uniform vec3  interTarget2  = vec3(0.0);
 uniform float interStrength = 0.5;
-uniform float interRadius = 1.0;
-uniform float interBRadius = 1.0;
+uniform float interRadius   = 1.0;
+uniform float interBRadius  = 1.0;
+
+vec3 bendGrass(vec3 origin, vec3 target, float bendStrength, float radius, float bRadius)
+{
+	vec3 worldSpace = (model * vec4(origin, 1.0)).xyz;
+	vec3 direction  = worldSpace - target;
+
+	direction.y = 0.0;
+	direction   = normalize(direction);
+
+	float dist  = distance(target, worldSpace);
+	float power = smoothstep(radius, 0.0, dist);
+
+	direction = (vec4(direction, 1.0) * model).xyz;
+	direction = normalize(direction);
+
+	vec3 finalPos = position + (direction * power * bendStrength * (bRadius + position.y)); 
+
+	return finalPos;
+}
 
 void main()
 {
@@ -133,24 +153,12 @@ void main()
 
 	float wNoise = worleyNoise(worleyVec * wScale);
 
-	//vec3 realPos = vec3(position.x, position.y, position.z);
-
-	//Interactivity stuff.
-	mat4 worldMat = model;
-
-	vec3 worldSpace = (worldMat * vec4(groundOffset, 1.0)).xyz;
-	vec3 direction = worldSpace - interTarget;
+	vec3 realPos = vec3(0.0);
 	
-	direction.y = 0.0;
-	direction = normalize(direction);
+	realPos += bendGrass(groundOffset, interTarget, interStrength, interRadius, interBRadius);
+	realPos += bendGrass(groundOffset, interTarget2, interStrength, interRadius, interBRadius);
 
-	float dist  = distance(interTarget, worldSpace);
-	float power = smoothstep(interRadius, 0.0, dist);
-	
-	direction = (vec4(direction, 1.0) * worldMat).xyz;
-	direction = normalize(direction);
-
-	vec3 realPos = position + (direction * power * interStrength * (interBRadius + position.y));
+	realPos.y *= 0.5;
 
 	groundOffset.x += position.y * wNoise * strength;
 	groundOffset.z += position.y * wNoise * strength;
